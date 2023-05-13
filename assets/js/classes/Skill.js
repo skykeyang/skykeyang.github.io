@@ -18,7 +18,7 @@ class Skill {
 
         var span = document.createElement('span');
         span.setAttribute("class","skill");
-        span.innerHTML = this.name + "<i class='val'>100%</i>";
+        span.innerHTML = this.name + "<i class='val'>" + this.proficiency + "%</i>";
 
         var div2 = document.createElement('div');
         div2.setAttribute("class", "progress-bar-wrap");
@@ -38,4 +38,4 @@ class Skill {
     }
 }
 
-console.log(new Skill("Python", "100%"));
+export default Skill;
