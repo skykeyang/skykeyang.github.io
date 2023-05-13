@@ -26,7 +26,7 @@ class Skill {
         var div3 = document.createElement('div');
         div3.setAttribute("class","progress-bar");
         div3.setAttribute("role", "progressbar");
-        div3.setAttribute("aria-valuenow","100");
+        div3.setAttribute("aria-valuenow",this.proficiency);
         div3.setAttribute("aria-valuemin", "0");
         div3.setAttribute("aria-valuemax", "100");
 
