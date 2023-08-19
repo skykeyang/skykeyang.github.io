@@ -365,7 +365,7 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Akills
+# Skills
 --------------------------------------------------------------*/
 .skills .progress {
   height: 60px;
@@ -557,6 +557,11 @@ section {
   top: 50%;
   transition: 0.3s;
   visibility: visible;
+}
+
+.portfolio .portfolio-wrap .img-fluid {
+  height: 25vh;
+  width: 40vw;
 }
 
 /*--------------------------------------------------------------
