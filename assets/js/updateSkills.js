@@ -1,7 +1,7 @@
 import Skill from "./classes/Skill.js";
 
 // UPDATE SKILLS BY ADDING ITEM TO ARRAY
-var skillsArray = [["Python", "80"],["Javascript", "70"],["Selenium","60"],["SQL", "50"],["PHP", "70"],["CSS", "70"],["Solidity", "30"],["Golang", "10"],["AWS", "40"]];
+var skillsArray = [["Python", "80"],["Javascript", "70"],["Selenium","60"],["SQL", "50"],["PHP", "70"],["CSS", "70"],["Solidity", "30"],["Golang", "10"],["AWS", "40"],["Java", "5"]];
 var objSkillsArray = [];
 
 skillsArray.forEach(convertToClass);
