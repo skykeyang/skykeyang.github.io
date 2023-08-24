@@ -564,6 +564,12 @@ section {
   width: 40vw;
 }
 
+@media (max-width: 700px) {
+  .portfolio .portfolio-wrap .img-fluid {
+    width: 100%;
+  }
+}
+
 /*--------------------------------------------------------------
 # Portfolio Details
 --------------------------------------------------------------*/
