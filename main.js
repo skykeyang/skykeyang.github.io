@@ -60,6 +60,29 @@ if (document.body.dataset.page === "home") {
   window.addEventListener("scroll", setActiveLink, { passive: true });
 }
 
+// Approach cards: mobile tap toggle
+document.querySelectorAll(".approach-card").forEach((card) => {
+  card.addEventListener("click", () => {
+    const wasActive = card.classList.contains("is-active");
+    document.querySelectorAll(".approach-card.is-active").forEach((c) => c.classList.remove("is-active"));
+    if (!wasActive) card.classList.add("is-active");
+  });
+
+  card.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      card.click();
+    }
+  });
+});
+
+// Close approach cards on outside tap
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".approach-card")) {
+    document.querySelectorAll(".approach-card.is-active").forEach((c) => c.classList.remove("is-active"));
+  }
+});
+
 if (window.lucide) {
   window.lucide.createIcons();
 }
