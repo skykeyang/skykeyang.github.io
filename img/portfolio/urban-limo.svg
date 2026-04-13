@@ -1,0 +1,23 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="750" rx="48" fill="#111827"/>
+  <rect x="60" y="60" width="1080" height="630" rx="36" fill="url(#paint0_linear)"/>
+  <rect x="130" y="174" width="520" height="312" rx="28" fill="#0F172A"/>
+  <rect x="690" y="132" width="380" height="396" rx="28" fill="#0F172A"/>
+  <rect x="170" y="214" width="300" height="28" rx="14" fill="#22304A"/>
+  <rect x="170" y="264" width="418" height="20" rx="10" fill="#1C2940"/>
+  <rect x="170" y="304" width="372" height="20" rx="10" fill="#1C2940"/>
+  <rect x="170" y="368" width="430" height="74" rx="22" fill="#2563EB"/>
+  <rect x="738" y="184" width="284" height="164" rx="22" fill="#172338"/>
+  <rect x="738" y="374" width="284" height="104" rx="22" fill="#172338"/>
+  <circle cx="838" cy="550" r="18" fill="#7DD3FC"/>
+  <circle cx="930" cy="550" r="18" fill="#7DD3FC"/>
+  <path d="M250 566H950" stroke="#7DD3FC" stroke-width="10" stroke-linecap="round" stroke-dasharray="6 24"/>
+  <text x="170" y="154" fill="#E5ECF6" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700">Urban Limo</text>
+  <text x="170" y="619" fill="#98A4B8" font-family="Inter, Arial, sans-serif" font-size="24">Luxury transportation marketplace with dynamic pricing, payments, and driver portals</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="98" y1="98" x2="1120" y2="650" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#151F33"/>
+      <stop offset="1" stop-color="#0B1220"/>
+    </linearGradient>
+  </defs>
+</svg>

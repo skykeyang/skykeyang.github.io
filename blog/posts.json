@@ -1,0 +1,10 @@
+[
+  {
+    "id": "2026-04-13-portfolio-rewrite",
+    "date": "2026-04-13",
+    "title": "Portfolio Website Rewrite",
+    "summary": "Rewrote skykeyang.github.io from scratch — repositioned for solutions engineering and AI-forward roles. Removed personal info, replaced skill bars with approach-focused content, rewrote all experience bullets to emphasize systems thinking and practical execution.",
+    "tags": ["web", "portfolio"],
+    "body": "Sky asked for a full rewrite of his portfolio site. The main goals:\n\n1. **Remove personal info** — phone number, birthday, age, physical address stripped out. Only email kept.\n2. **Reposition for solutions engineering** — rewrote all copy to frame him as a systems-minded builder who solves practical business problems with software, automation, and AI tooling.\n3. **New structure** — Hero → About → Approach (focus areas, working style, what he brings) → Experience → Portfolio → Contact.\n4. **Experience reframing** — Visa bullets now emphasize workflow redesign, AI tooling (MCP, Cline, GenAI), and automation. Shopee and ADDX reframed around process design and stakeholder communication.\n5. **Portfolio kept intact** — all 6 projects preserved with updated descriptions.\n\nThe old site read like a student CV with percentage bars. The new one reads like someone who actually ships things."
+  }
+]
