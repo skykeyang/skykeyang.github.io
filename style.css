@@ -757,10 +757,8 @@ h4 {
   overflow: hidden;
 }
 
-.approach-card:hover,
-.approach-card.is-active {
+.approach-card:hover {
   border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
-  box-shadow: 0 8px 30px rgba(37, 99, 235, 0.08);
 }
 
 .approach-card .approach-header {
@@ -771,20 +769,26 @@ h4 {
   min-height: 40px;
 }
 
+.approach-card h3 {
+  white-space: nowrap;
+
 .approach-card .approach-body {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 300ms ease, opacity 300ms ease;
+  transition: grid-template-rows 400ms ease, opacity 400ms ease;
   opacity: 0;
   margin-top: 0;
 }
 
-.approach-card:hover .approach-body,
-.approach-card.is-active .approach-body {
+.approach-card.is-revealed .approach-body {
   grid-template-rows: 1fr;
   opacity: 1;
   margin-top: 0.75rem;
 }
+
+.approach-card:nth-child(2).is-revealed .approach-body { transition-delay: 100ms; }
+.approach-card:nth-child(3).is-revealed .approach-body { transition-delay: 200ms; }
+.approach-card:nth-child(4).is-revealed .approach-body { transition-delay: 300ms; }
 
 .approach-body-inner {
   overflow: hidden;
