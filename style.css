@@ -745,14 +745,14 @@ h4 {
 
 .approach-card {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 0;
   padding: 1.25rem 1.5rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  transition: border-color 220ms ease, box-shadow 220ms ease;
-  cursor: pointer;
+  transition: border-color 220ms ease;
   position: relative;
   overflow: hidden;
 }
