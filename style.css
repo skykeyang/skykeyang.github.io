@@ -625,6 +625,14 @@ h4 {
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.blog-tag:hover,
+.blog-tag.is-active {
+  background: var(--accent);
+  color: var(--surface-strong);
 }
 
 .blog-mood {

@@ -44,11 +44,39 @@
   // Render posts
   const PAGE_SIZE = 5;
   let visibleCount = 0;
+  let activeTag = null;
+  let filteredPosts = [...posts];
+
+  function getFilteredPosts() {
+    if (!activeTag) return [...posts];
+    return posts.filter(p => (p.tags || []).includes(activeTag));
+  }
+
+  function setFilter(tag) {
+    activeTag = activeTag === tag ? null : tag;
+    filteredPosts = getFilteredPosts();
+    // Clear existing posts
+    feed.innerHTML = "";
+    visibleCount = 0;
+    let btn = document.getElementById("blog-load-more");
+    if (btn) btn.remove();
+    // Re-render
+    if (filteredPosts.length) {
+      renderBatch(0);
+    } else {
+      empty.style.display = "";
+      empty.querySelector("p").textContent = `No posts tagged "${tag}".`;
+    }
+    // Update active tag buttons
+    document.querySelectorAll(".blog-tag").forEach(el => {
+      el.classList.toggle("is-active", el.dataset.tag === activeTag);
+    });
+  }
 
   function renderBatch(startIndex) {
-    const end = Math.min(startIndex + PAGE_SIZE, posts.length);
+    const end = Math.min(startIndex + PAGE_SIZE, filteredPosts.length);
     for (let i = startIndex; i < end; i++) {
-      renderPost(posts[i], i);
+      renderPost(filteredPosts[i], i);
     }
     visibleCount = end;
     updateLoadMore();
@@ -67,7 +95,7 @@
           <p class="eyebrow">${formatDate(post.date)}</p>
           <h3>${moodHtml}${escapeHtml(post.title)}</h3>
         </div>
-        <div class="blog-tags">${(post.tags || []).map(t => `<span class="blog-tag">${escapeHtml(t)}</span>`).join("")}</div>
+        <div class="blog-tags">${(post.tags || []).map(t => `<span class="blog-tag" data-tag="${escapeHtml(t)}">${escapeHtml(t)}</span>`).join("")}</div>
       </div>
       <p class="blog-summary">${escapeHtml(post.summary)}</p>
       <div class="blog-body" id="body-${post.id}"></div>
@@ -109,7 +137,7 @@
 
   function updateLoadMore() {
     let btn = document.getElementById("blog-load-more");
-    if (visibleCount >= posts.length) {
+    if (visibleCount >= filteredPosts.length) {
       if (btn) btn.remove();
       return;
     }
@@ -121,12 +149,20 @@
       btn.addEventListener("click", () => renderBatch(visibleCount));
       feed.after(btn);
     }
-    const remaining = posts.length - visibleCount;
+    const remaining = filteredPosts.length - visibleCount;
     btn.textContent = remaining > PAGE_SIZE ? `Load more (${remaining} remaining)` : `Load more (${remaining} remaining)`;
   }
 
   // Initial render
   renderBatch(0);
+
+  // Tag click delegation
+  feed.addEventListener("click", (e) => {
+    const tag = e.target.closest(".blog-tag");
+    if (tag) {
+      setFilter(tag.dataset.tag);
+    }
+  });
 
   // Stats
   if (statsEl) {
