@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SG Bingo | Soh Keyang</title>
+  <meta name="description" content="SG Bingo project details for Soh Keyang's portfolio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="detail">
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html">Sky</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav id="site-nav" class="site-nav">
+          <a href="index.html#about">About</a>
+          <a href="index.html#skills">Skills</a>
+          <a href="index.html#resume">Resume</a>
+          <a href="index.html#portfolio">Portfolio</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container">
+        <nav class="breadcrumb reveal" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <a href="index.html#portfolio">Portfolio</a>
+          <span>/</span>
+          <span>SG Bingo</span>
+        </nav>
+
+        <section class="project-layout">
+          <div class="project-media stack reveal">
+            <div class="media-card">
+              <img src="img/portfolio/sg-bingo.svg" alt="SG Bingo app illustration">
+            </div>
+          </div>
+
+          <div class="project-content stack">
+            <article class="content-card reveal">
+              <p class="eyebrow">Product / Mobile Web</p>
+              <h1>SG Bingo — Social Bingo Game</h1>
+              <div class="meta-list">
+                <div class="meta-item"><span>Category</span><strong>Personal Project</strong></div>
+                <div class="meta-item"><span>Tech Stack</span><strong>React, TypeScript, Vite, Tailwind CSS</strong></div>
+                <div class="meta-item"><span>Role</span><strong>Solo Developer</strong></div>
+                <div class="meta-item"><span>Live</span><strong><a href="https://sgbingo.app" target="_blank" rel="noreferrer">sgbingo.app</a></strong></div>
+              </div>
+            </article>
+
+            <article class="content-card reveal">
+              <h2>Project description</h2>
+              <p>Mobile-first social bingo game built for friend groups and teams. Players generate unique bingo cards from event pools, spot real-world items or situations, and race to complete their board first. Designed for use at social events, office activities, and travel.</p>
+            </article>
+
+            <article class="content-card reveal">
+              <h2>Key features</h2>
+              <ul class="plain-list">
+                <li>Unique card generation with grid index mapping</li>
+                <li>Multiple event pools (SG Life, Food, Office, Travel)</li>
+                <li>Photo proof system for event verification</li>
+                <li>Shared leaderboards and group scoring</li>
+                <li>Perpetual and weekly pool types</li>
+                <li>Koh Samui travel bingo integration</li>
+                <li>Auth with email and social login</li>
+                <li>Bingo blog with automated daily posts</li>
+              </ul>
+            </article>
+
+            <article class="content-card reveal">
+              <h2>Architecture</h2>
+              <p>React SPA with Vite, Tailwind CSS for styling. Supabase for auth and database. Deployed on Vercel. Automated blog generation via OpenClaw cron jobs writing to a GitHub Pages blog with RSS feed.</p>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>Soh Keyang</p>
+        <div class="footer-links">
+          <a href="https://github.com/skykeyang" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/soh-keyang/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

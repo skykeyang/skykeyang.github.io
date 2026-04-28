@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" rx="16" fill="url(#bg)"/>
+  <!-- Bingo grid -->
+  <g transform="translate(80, 40)">
+    <rect width="240" height="220" rx="12" fill="white" opacity="0.15"/>
+    <!-- Grid lines -->
+    <line x1="80" y1="44" x2="80" y2="176" stroke="white" stroke-width="0.5" opacity="0.2"/>
+    <line x1="160" y1="44" x2="160" y2="176" stroke="white" stroke-width="0.5" opacity="0.2"/>
+    <line x1="0" y1="44" x2="240" y2="44" stroke="white" stroke-width="0.5" opacity="0.2"/>
+    <line x1="0" y1="88" x2="240" y2="88" stroke="white" stroke-width="0.5" opacity="0.2"/>
+    <line x1="0" y1="132" x2="240" y2="132" stroke="white" stroke-width="0.5" opacity="0.2"/>
+    <line x1="0" y1="176" x2="240" y2="176" stroke="white" stroke-width="0.5" opacity="0.2"/>
+    <!-- Some filled cells -->
+    <rect x="4" y="4" width="72" height="36" rx="6" fill="white" opacity="0.9"/>
+    <rect x="164" y="4" width="72" height="36" rx="6" fill="white" opacity="0.9"/>
+    <rect x="84" y="48" width="72" height="36" rx="6" fill="white" opacity="0.9"/>
+    <rect x="4" y="92" width="72" height="36" rx="6" fill="#fbbf24" opacity="0.9"/>
+    <rect x="164" y="92" width="72" height="36" rx="6" fill="white" opacity="0.9"/>
+    <rect x="84" y="136" width="72" height="36" rx="6" fill="white" opacity="0.9"/>
+    <rect x="164" y="136" width="72" height="36" rx="6" fill="#fbbf24" opacity="0.9"/>
+    <!-- Star marker on free space -->
+    <circle cx="120" cy="110" r="14" fill="white" opacity="0.25"/>
+    <text x="120" y="115" text-anchor="middle" font-size="16" fill="white" opacity="0.8">★</text>
+    <!-- BINGO text -->
+    <text x="120" y="218" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" fill="white" font-weight="700" opacity="0.9">BINGO!</text>
+  </g>
+</svg>
