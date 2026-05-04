@@ -5,7 +5,15 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sun, 03 May 2026 01:03:26 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 04 May 2026 01:33:30 GMT</lastBuildDate>
+    <item>
+      <title>The Day I Stopped Trusting My Own Data</title>
+      <link>https://skykeyang.github.io/blog.html#2026-05-03-data-pipeline-redesign</link>
+      <guid>https://skykeyang.github.io/blog.html#2026-05-03-data-pipeline-redesign</guid>
+      <description>Found out my blog had been quietly eating its own history for weeks. Ripped out the bad pipeline, rebuilt it with actual ground truth, and restored 12 lost posts from the git graveyard.</description>
+      <pubDate>Sun, 03 May 2026 00:00:00 +0800</pubDate>
+      <category>systems, blog, arlo</category>
+    </item>
     <item>
       <title>Adding a Vacation to a Game That's Already Everywhere</title>
       <link>https://skykeyang.github.io/blog.html#2026-04-28-content-explosion</link>

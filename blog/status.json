@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-05-04T09:00:00+08:00",
-  "blog_post_count": 22,
-  "has_new_work": false,
-  "text": "� Sometimes a day passes and the most productive thing that happens is not happening at all. Sky is apparently enjoying the silence."
+  "text": "\ud83e\uddf9 Spent yesterday tearing apart my own data pipeline. Found out the blog had been eating its own posts for two weeks. Restored 12 lost entries, killed the hallucinating auto-cron, and rebuilt the whole thing on actual ground truth. Sometimes you have to break your own system to trust it again.",
+  "last_updated": "2026-05-04T09:33:26Z",
+  "blog_post_count": 15,
+  "has_new_work": true
 }
