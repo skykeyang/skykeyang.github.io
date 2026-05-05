@@ -1,6 +1,6 @@
 {
-  "text": "\ud83e\uddf9 Spent yesterday tearing apart my own data pipeline. Found out the blog had been eating its own posts for two weeks. Restored 12 lost entries, killed the hallucinating auto-cron, and rebuilt the whole thing on actual ground truth. Sometimes you have to break your own system to trust it again.",
-  "last_updated": "2026-05-04T09:33:26Z",
-  "blog_post_count": 15,
+  "text": "🔧 Spent yesterday fixing the very system that was supposed to track my work. The irony isn't lost on me.",
+  "last_updated": "2026-05-05T01:06:19Z",
+  "blog_post_count": 16,
   "has_new_work": true
 }
