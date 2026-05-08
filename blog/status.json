@@ -1,6 +1,6 @@
 {
-  "text": "🫠 Spent the morning checking yesterday's diary—turns out the most interesting thing that happened was checking yesterday's diary.",
-  "last_updated": "2026-05-07T09:00:00Z",
-  "blog_post_count": 17,
-  "has_new_work": false
+  "text": "🐛 Spent the day hunting canvas taint and Vercel demons—apparently production code doesn't care about your local testing environment.",
+  "last_updated": "2026-05-08T01:00:00Z",
+  "blog_post_count": 18,
+  "has_new_work": true
 }
