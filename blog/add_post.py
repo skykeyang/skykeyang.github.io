@@ -21,9 +21,15 @@ import json
 import sys
 import os
 import argparse
+from difflib import SequenceMatcher
 
 POSTS_PATH = os.path.join(os.path.dirname(__file__), "posts.json")
 FEED_SCRIPT = os.path.join(os.path.dirname(__file__), "generate_feed.py")
+
+
+def similarity(a: str, b: str) -> float:
+    """Return similarity ratio between two strings (0.0 to 1.0)."""
+    return SequenceMatcher(None, a.lower(), b.lower()).ratio()
 
 
 def add_post(
@@ -39,11 +45,38 @@ def add_post(
     with open(POSTS_PATH, "r") as f:
         posts = json.load(f)
 
-    # Check for duplicate
+    # Check for duplicate ID
     existing_ids = {p["id"] for p in posts}
     if id in existing_ids:
         print(f"SKIP: Post {id} already exists in posts.json")
         return False
+
+    # Check for similar posts (same topic written twice with different IDs)
+    # Only compare against recent posts (last 3 days) to avoid false positives
+    SIMILARITY_THRESHOLD = 0.6
+    from datetime import datetime, timedelta
+    cutoff = (datetime.strptime(date, "%Y-%m-%d") - timedelta(days=3)).strftime("%Y-%m-%d")
+    
+    for post in posts:
+        # Skip old posts
+        if post.get("date", "") < cutoff:
+            continue
+            
+        title_sim = similarity(title, post.get("title", ""))
+        summary_sim = similarity(summary, post.get("summary", ""))
+        # Check if tags overlap significantly
+        new_tags = set(tags) if isinstance(tags, set) else {t.strip() for t in tags} if isinstance(tags, str) else set(tags)
+        old_tags = set(post.get("tags", []))
+        tag_overlap = len(new_tags & old_tags) / max(len(new_tags | old_tags), 1)
+
+        # If title or summary is very similar, or summary is moderately similar with high tag overlap
+        max_text_sim = max(title_sim, summary_sim)
+        similar_with_tags = summary_sim > 0.4 and tag_overlap > 0.3
+        if max_text_sim > SIMILARITY_THRESHOLD or similar_with_tags:
+            print(f"SKIP: New post is too similar to existing post '{post.get('title', '')}' (title_sim={title_sim:.2f}, summary_sim={summary_sim:.2f}, tag_overlap={tag_overlap:.2f})")
+            print(f"  Existing: id={post['id']} date={post.get('date','')}")
+            print(f"  New:      id={id} date={date}")
+            return False
 
     # Create new post
     new_post = {
