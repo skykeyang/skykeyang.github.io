@@ -49,37 +49,39 @@
 
           <div class="project-content stack">
             <article class="content-card reveal">
-              <p class="eyebrow">Full-Stack Project</p>
+              <p class="eyebrow">Full-Stack Marketplace</p>
               <h1>Urban Limo — Luxury Transportation Marketplace</h1>
               <div class="meta-list">
-                <div class="meta-item"><span>Category</span><strong>Full-Stack Project</strong></div>
-                <div class="meta-item"><span>Tech Stack</span><strong>React, TypeScript, FastAPI, PostgreSQL, AWS</strong></div>
-                <div class="meta-item"><span>Role</span><strong>Solo Developer</strong></div>
-                <div class="meta-item"><span>Live</span><strong><a href="https://urban-limo.com" target="_blank" rel="noreferrer">https://urban-limo.com</a></strong></div>
+                <div class="meta-item"><span>Category</span><strong>Full-Stack Marketplace</strong></div>
+                <div class="meta-item"><span>Tech Stack</span><strong>FastAPI, React, TypeScript, PostgreSQL (RDS), AWS ECS</strong></div>
+                <div class="meta-item"><span>Role</span><strong>Solo Developer — Design to Deployment</strong></div>
+                <div class="meta-item"><span>Status</span><strong>Live on QA, preparing for production launch</strong></div>
+                <div class="meta-item"><span>URL</span><strong><a href="https://qa.urban-limo.com" target="_blank" rel="noreferrer">qa.urban-limo.com</a></strong></div>
               </div>
             </article>
 
             <article class="content-card reveal">
               <h2>Project description</h2>
-              <p>Full-stack marketplace connecting customers with professional drivers for scheduled luxury transportation. Pull-based marketplace model.</p>
+              <p>End-to-end marketplace connecting customers with professional chauffeur drivers for scheduled luxury transportation — airport transfers, hourly charters, and multi-day bookings. Pull-based job marketplace where drivers claim rides matching their vehicle and availability.</p>
             </article>
 
             <article class="content-card reveal">
               <h2>Key features</h2>
               <ul class="plain-list">
-                <li>Complete ride lifecycle</li>
-                <li>Dynamic pricing with rate cards and surcharges</li>
-                <li>Stripe payments with commission splits</li>
-                <li>Role-based portals</li>
-                <li>AWS ECS deployment</li>
-                <li>OpenAPI-first dev</li>
-                <li>53+ backend tests</li>
+                <li>Full booking lifecycle — quoting, payment capture, driver matching, trip tracking, and completion</li>
+                <li>Dynamic pricing engine with rate cards, peak/weekend/holiday surcharges, and addon pricing</li>
+                <li>Stripe integration — checkout sessions, capture/void, post-trip extra charges, and Stripe Connect for driver payouts</li>
+                <li>Customer portal — booking flow, real-time quotes, trip management, Stripe-secured payments</li>
+                <li>Driver portal — job feed, claim system, document upload & verification, strike & compliance management</li>
+                <li>Admin dashboard — driver management, booking oversight, rate card & addon configuration, audit logging, finance & dispute tracking</li>
+                <li>Role-based auth with JWT, Twilio SMS OTP, and admin RBAC</li>
+                <li>Celery async workers for notifications, webhooks, and background jobs</li>
               </ul>
             </article>
 
             <article class="content-card reveal">
-              <h2>Architecture</h2>
-              <p>Monorepo with Turborepo + pnpm. FastAPI + SQLAlchemy, React/TypeScript + Tailwind, Celery workers, Redis caching.</p>
+              <h2>Architecture & DevOps</h2>
+              <p>Monorepo with Turborepo + pnpm. FastAPI backend (async SQLAlchemy + Alembic migrations) on AWS ECS Fargate, React/TypeScript + Tailwind frontends (customer + admin), PostgreSQL on RDS, Celery workers on ECS, S3 for document storage, CloudWatch for logging. Automated deployment pipeline with ECR + ECS task definition rolling updates.</p>
             </article>
           </div>
         </section>
