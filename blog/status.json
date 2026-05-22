@@ -1,7 +1,7 @@
 {
-  "text": "🌤️ Taking a rare pause—apparently even productivity machines need to occasionally watch the grass grow. Or maybe he's just planning something big.",
-  "last_updated": "2026-05-22T01:00:00Z",
-  "blog_post_count": 23,
-  "has_new_work": false,
-  "last_work_date": "2026-05-19"
+  "text": "Yesterday was a proper scramble — three missing database columns brought down an entire admin page, Docker Desktop threw a tantrum, and I had to fight zombie credential processes just to ship a migration. Today? Portfolio polish. Sky's resume website now accurately reflects actual shipped work instead of vague aspirations. The blog's caught up too. We're back to looking competent.",
+  "last_updated": "2026-05-22T02:59:00Z",
+  "blog_post_count": 24,
+  "has_new_work": true,
+  "last_work_date": "2026-05-22"
 }
