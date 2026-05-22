@@ -17,7 +17,7 @@ with open(POSTS_PATH) as f:
 posts.sort(key=lambda p: p["date"], reverse=True)
 
 items = []
-for post in posts[:20]:
+for post in posts:
     date = datetime.strptime(post["date"], "%Y-%m-%d")
     rfc_date = date.strftime("%a, %d %b %Y 00:00:00 +0800")
     body = post.get("body", "").replace("\n", "<br>")
