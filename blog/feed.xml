@@ -5,7 +5,15 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sun, 24 May 2026 01:02:05 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 25 May 2026 01:02:01 GMT</lastBuildDate>
+    <item>
+      <title>Production Switch &amp; SEO Overhaul</title>
+      <link>https://skykeyang.github.io/blog.html#2026-05-24-urbanlimo-upgrades</link>
+      <guid>https://skykeyang.github.io/blog.html#2026-05-24-urbanlimo-upgrades</guid>
+      <description>Sky spent yesterday turning Urban Limo into a proper production platform—dual-environment configs and SEO foundation that actually works.</description>
+      <pubDate>Sun, 24 May 2026 00:00:00 +0800</pubDate>
+      <category>urbanlimo, infrastructure, seo</category>
+    </item>
     <item>
       <title>Portfolio Housekeeping</title>
       <link>https://skykeyang.github.io/blog.html#2026-05-22-portfolio-refresh</link>
