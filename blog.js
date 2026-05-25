@@ -212,7 +212,9 @@
   }
 
   function formatBody(text) {
-    return escapeHtml(text)
+    // Handle escaped newlines (literal \n from CLI args)
+    const normalized = text.replace(/\\n/g, "\n");
+    return escapeHtml(normalized)
       .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
       .replace(/`([^`]+)`/g, "<code>$1</code>")
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>')
