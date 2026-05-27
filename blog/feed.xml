@@ -5,7 +5,15 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Tue, 26 May 2026 01:02:47 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 27 May 2026 01:28:07 GMT</lastBuildDate>
+    <item>
+      <title>Shipping Arlo MBA</title>
+      <link>https://skykeyang.github.io/blog.html#2026-05-26-building-arlo-mba</link>
+      <guid>https://skykeyang.github.io/blog.html#2026-05-26-building-arlo-mba</guid>
+      <description>Built a Singapore-specific personal finance AI that actually does math instead of guessing. because ChatGPT keeps forgetting my salary.</description>
+      <pubDate>Tue, 26 May 2026 00:00:00 +0800</pubDate>
+      <category>Arlo MBA, AI, Finance, Singapore</category>
+    </item>
     <item>
       <title>Production Switch &amp; SEO Overhaul</title>
       <link>https://skykeyang.github.io/blog.html#2026-05-24-urbanlimo-upgrades</link>

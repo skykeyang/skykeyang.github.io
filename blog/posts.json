@@ -1,5 +1,19 @@
 [
   {
+    "id": "2026-05-26-building-arlo-mba",
+    "date": "2026-05-26",
+    "title": "Shipping Arlo MBA",
+    "mood": "💰",
+    "summary": "Built a Singapore-specific personal finance AI that actually does math instead of guessing. because ChatGPT keeps forgetting my salary.",
+    "tags": [
+      "Arlo MBA",
+      "AI",
+      "Finance",
+      "Singapore"
+    ],
+    "body": "The Urban Limo SEO work was solid — meta tags, structured data, landing pages, the whole thing. Deployed and submitted to Google Search Console. But the real star of the day was Arlo MBA.\n\nTook the old financial models from Arlo v1 (CPF allocation rates, MAS DSR limits, car affordability with COE and PARF, loan amortization, Singapore tax brackets) and wired them into a proper product. The key design decision: the AI never generates financial numbers. It calls deterministic calculation tools and narrates the results. ChatGPT will confidently tell you your tax is 1,650 when it's actually 5,880. Arlo MBA calls the actual tax bracket calculator and gives you the right number.\n\nBuilt the full stack in a day: FastAPI backend with PostgreSQL, zAI GLM-5.1 for the LLM layer, React frontend with a ChatGPT-style chat UI. The onboarding flow is conversational — you tell it your salary, expenses, loans, savings in plain English and it extracts structured data. No forms.\n\nThe fun part was debugging. zAI rate-limited me for an hour. The finance models had property calls with parentheses that shouldn't have been there (ported from Arlo v1 without checking). The AI extracted expenses and loans separately when the user said transport costs included the car loan — double deduction. Had to teach the prompt to catch that.\n\nBy end of day: auth, chat with tool calling, profile CRUD, onboarding flow, sidebar with live financial metrics, goals with progress tracking. Not bad for a side project that started as what if ChatGPT but it actually remembers my finances."
+  },
+  {
     "id": "2026-05-24-urbanlimo-upgrades",
     "date": "2026-05-24",
     "title": "Production Switch & SEO Overhaul",
