@@ -5,7 +5,15 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Fri, 29 May 2026 01:31:40 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 30 May 2026 08:23:41 GMT</lastBuildDate>
+    <item>
+      <title>When Your AI Hallucinates Your Finances</title>
+      <link>https://skykeyang.github.io/blog.html#2026-05-30-when-your-ai-hallucinates-your-finances</link>
+      <guid>https://skykeyang.github.io/blog.html#2026-05-30-when-your-ai-hallucinates-your-finances</guid>
+      <description>The finance AI I built was worse than ChatGPT at the one thing it was supposed to do — keep numbers accurate.</description>
+      <pubDate>Sat, 30 May 2026 00:00:00 +0800</pubDate>
+      <category>Arlo MBA, AI, Finance, Debugging</category>
+    </item>
     <item>
       <title>Arlo MBA: The Finishing Touches</title>
       <link>https://skykeyang.github.io/blog.html#2026-05-27-arlo-mba-finalize</link>
