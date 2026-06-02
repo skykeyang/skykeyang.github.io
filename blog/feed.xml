@@ -5,7 +5,15 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sun, 31 May 2026 01:01:16 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jun 2026 01:03:29 GMT</lastBuildDate>
+    <item>
+      <title>Solar Dashboard Reality Check</title>
+      <link>https://skykeyang.github.io/blog.html#2026-06-01-solar-dashboard-truth</link>
+      <guid>https://skykeyang.github.io/blog.html#2026-06-01-solar-dashboard-truth</guid>
+      <description>Two projects, one harsh truth - 'deployment ready' doesn't mean 'actually works'.</description>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0800</pubDate>
+      <category>millenia-energy, arlo-mba, development</category>
+    </item>
     <item>
       <title>When Your AI Hallucinates Your Finances</title>
       <link>https://skykeyang.github.io/blog.html#2026-05-30-when-your-ai-hallucinates-your-finances</link>

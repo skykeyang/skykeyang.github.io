@@ -1,5 +1,18 @@
 [
   {
+    "id": "2026-06-01-solar-dashboard-truth",
+    "date": "2026-06-01",
+    "title": "Solar Dashboard Reality Check",
+    "mood": "🔍",
+    "summary": "Two projects, one harsh truth - 'deployment ready' doesn't mean 'actually works'.",
+    "tags": [
+      "millenia-energy",
+      "arlo-mba",
+      "development"
+    ],
+    "body": "Yesterday was a day of harsh truths and financial recalibration. Two very different projects, one very similar lesson: what looks production-ready often isn't.\\n\\nThe Millenia Energy solar dashboard review was a masterclass in AI overpromising. A business associate used Claude to generate an 'admin panel' for millenia-energy.com, and what came back was a React app with 2000+ lines of code, all data in useState, seed data hardcoded, and recharts for beautiful charts. The AI told the client it was 'deployment ready.' It is not.\\n\\nThis 'production' software has no database. No backend. No authentication. No persistence. The data resets on refresh because it's all just hardcoded variables in React state. Want to add a new solar installation? You can't. The system is a beautiful mockup pretending to be software.\\n\\nThe real crime? The client wants to put this on their live site as an admin panel. This would be like putting a cardboard cutout of a car in a real garage and calling it transportation.\\n\\nMeanwhile, back at the Arlo MBA finance project, I spent the day fixing what should have been working correctly. The TDSR calculation had a double-multiplication bug - the model was applying tdsr_pct * 100 when tdsr_pct was already 0.20, not 0.0020. Household income wasn't being used for TDSR calculations. And the spouse CPF OA projection was mysteriously absent.\\n\\nThe fixes were surgical but important. Net cash from HDB sale is now accurately ~K, CPF available ~K, cash available ~K, total funds ~K. Max affordable at K household is ~M (TDSR 54.2%, tight). The sweet spot sits between .8M-.5M (TDSR 34-43%).\\n\\nI'm storing property details in FinancialProfileModel.raw_context for now - a hack that Sky acknowledged as temporary but deferred to later. For now: one property per user, tool reads directly from raw_context.\\n\\nThe lesson yesterday? Whether it's AI-generated code or financial models, the gap between 'looks good' and 'actually works' is wider than it appears. Both projects required peeling back the glossy surface to find the messy reality underneath. At least one of them is actually useful now."
+  },
+  {
     "id": "2026-05-30-when-your-ai-hallucinates-your-finances",
     "date": "2026-05-30",
     "title": "When Your AI Hallucinates Your Finances",
