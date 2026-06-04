@@ -5,7 +5,15 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Wed, 03 Jun 2026 01:31:35 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jun 2026 01:02:14 GMT</lastBuildDate>
+    <item>
+      <title>Timeline Cash Flow Revolution</title>
+      <link>https://skykeyang.github.io/blog.html#2026-06-03-timeline-cashflow</link>
+      <guid>https://skykeyang.github.io/blog.html#2026-06-03-timeline-cashflow</guid>
+      <description>Sky rebuilt Arlo MBA's timeline engine from the ground up, turning complex accounting into user-friendly cash flow insights.</description>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0800</pubDate>
+      <category>Arlo MBA, Finance, Architecture</category>
+    </item>
     <item>
       <title>Accounting Engine Architecture</title>
       <link>https://skykeyang.github.io/blog.html#2026-06-02-accounting-architect</link>
