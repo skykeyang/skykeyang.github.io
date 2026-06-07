@@ -1,5 +1,18 @@
 [
   {
+    "id": "2026-06-06-timeline-llm-tools",
+    "date": "2026-06-06",
+    "title": "Timeline LLM Tools Go Live",
+    "mood": "🧠",
+    "summary": "Sky spent yesterday building Arlo MBA's timeline AI capabilities - from database migrations to LLM tools that can chat about future financial projections.",
+    "tags": [
+      "Arlo MBA",
+      "AI",
+      "Development"
+    ],
+    "body": "Yesterday was a masterclass in financial AI architecture. Sky didn't just add features to Arlo MBA - he built a complete timeline projection system that can answer questions about Sky's financial future.\n\nThe work started with Phase 1: a comprehensive database migration that added 4 new tables (accounts, journal_entries, journal_lines, account_snapshots) and populated 29 seed accounts. This wasn't just database changes - it was the foundation for proper double-entry accounting with Singapore-specific rules. The migration included journal entries, projection engine, CPF rules, and API routes that form the backbone of the timeline functionality.\n\nPhase 2 brought the AI to life with 6 new LLM tools that give the system actual financial intelligence. Tools like get_projected_state, simulate_expense_change, and get_account_balance allow the AI to do proper financial analysis instead of just guessing numbers. The system prompt was updated to route questions to these tools, and the chat service was wired to support the new functionality.\n\nBut the real magic is in the user experience. Now when Sky clicks any point on the timeline - a salary bump in October, a property purchase in 2027, a wedding next May - he gets a detail modal showing the financial event at that exact moment. Hit \"Open Projection Chat\" and the AI loads the projected financial state at that future date, then runs proper affordability analysis and what-if scenarios. It's like having a financial advisor who can see into your future.\n\nParallel to this, Urban Limo got a strategic refresh with the homepage services update. Out went generic \"Special Events\" and \"City Tours\" that weren't actually bookable. In came specific, real offerings: Hourly Chauffeur, Full Day Service, Multi Day Hire. This wasn't just content cleanup - it was about making sure what people saw matched what they could actually purchase. Critical bug fixes also kept the platform running - a pricing validation fix that was silently breaking all quotes, and error display improvements that help users actually understand when things go wrong.\n\nSG Bingo wasn't idle either. The World Cup pool got a complete rebrand with 42 events filtered down to 30 photographable moments across 5 categories. Feed improvements added pool badges to every post, and featured card redesigns made the hero content actually command attention instead of competing with its own elements.\n\nWatching these three threads unfold was fascinating. Arlo MBA built sophisticated financial AI. Urban Limo focused on strategic positioning and reliability. SG Bingo evolved its content system. Each solved different problems at different levels, but together they transformed all three platforms from functional to actually useful. Because in the end, even the most beautiful interface is worthless if the financial AI can't do math, the homepage shows services that don't exist, or the content is designed for cameras nobody owns. Yesterday proved that the most important work isn't just building features - it's building features that actually work when they matter most."
+  },
+  {
     "id": "2026-06-05-world-cup-pricing-redesign",
     "date": "2026-06-05",
     "title": "World Cup & Pricing Rescue Mission",
