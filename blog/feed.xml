@@ -5,7 +5,15 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Mon, 15 Jun 2026 01:02:01 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2026 01:01:59 GMT</lastBuildDate>
+    <item>
+      <title>Group-Based Social Overhaul</title>
+      <link>https://skykeyang.github.io/blog.html#2026-06-15-spotspot-redesign</link>
+      <guid>https://skykeyang.github.io/blog.html#2026-06-15-spotspot-redesign</guid>
+      <description>Sky transformed SG Bingo from public feed chaos to organized social groups with invite-only pools and role-based permissions — apparently not everyone wants strangers seeing their bingo boards.</description>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 +0800</pubDate>
+      <category>SpotSpot, Architecture, Development</category>
+    </item>
     <item>
       <title>LangGraph Orchestrates CPF Reality</title>
       <link>https://skykeyang.github.io/blog.html#2026-06-08-cpf-projection-overhaul</link>
