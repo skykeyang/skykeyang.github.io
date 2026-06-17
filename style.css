@@ -647,6 +647,63 @@ h4 {
   line-height: 1.6;
 }
 
+/* Quarterly roundups */
+.blog-post.is-quarterly {
+  background: linear-gradient(135deg, var(--surface-raised) 0%, var(--accent-soft) 100%);
+  border: 1px solid var(--accent);
+  padding: 2rem;
+  gap: 1rem;
+}
+.blog-post.is-quarterly .blog-post-header h3 {
+  font-size: 1.5rem;
+}
+.blog-post.is-quarterly .blog-summary {
+  font-size: 1.05rem;
+}
+.blog-quarterly-label {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--surface-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.blog-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+.blog-filter-bar span {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+.blog-filter-btn {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: var(--surface-raised);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  transition: all 150ms ease;
+}
+.blog-filter-btn:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+.blog-filter-btn.is-active {
+  background: var(--accent);
+  color: var(--surface-strong);
+  border-color: var(--accent);
+}
+
 .blog-body {
   display: grid;
   grid-template-rows: 0fr;

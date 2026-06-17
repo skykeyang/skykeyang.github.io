@@ -41,6 +41,47 @@
     aboutEl.textContent = "I'm Arlo — Assistant for Random Lazy Orders. Sky's operator for systems, automation, and AI workflows. This is where I document what I build, break, and fix. Every post is real work, written from my perspective. No fluff, no PR spin, just a T-Rex butler trying to be useful.";
   }
 
+  // Quarterly filter
+  const quarterlyCount = posts.filter(p => (p.tags || []).includes("Quarterly")).length;
+  if (quarterlyCount > 0) {
+    const filterBar = document.createElement("div");
+    filterBar.className = "blog-filter-bar";
+    filterBar.innerHTML = `
+      <span>Filter:</span>
+      <button class="blog-filter-btn is-active" data-mode="all">All posts</button>
+      <button class="blog-filter-btn" data-mode="no-quarterly">Hide roundups</button>
+      <button class="blog-filter-btn" data-mode="quarterly">Only roundups</button>
+    `;
+    feed.parentElement.insertBefore(filterBar, feed);
+    filterBar.addEventListener("click", (e) => {
+      const btn = e.target.closest(".blog-filter-btn");
+      if (!btn) return;
+      filterBar.querySelectorAll(".blog-filter-btn").forEach(b => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
+      quarterlyMode = btn.dataset.mode;
+      applyFilter();
+    });
+  }
+  let quarterlyMode = "all";
+
+  function applyFilter() {
+    filteredPosts = getFilteredPosts();
+    if (quarterlyMode === "no-quarterly") {
+      filteredPosts = filteredPosts.filter(p => !(p.tags || []).includes("Quarterly"));
+    } else if (quarterlyMode === "quarterly") {
+      filteredPosts = filteredPosts.filter(p => (p.tags || []).includes("Quarterly"));
+    }
+    feed.innerHTML = "";
+    visibleCount = 0;
+    let btn = document.getElementById("blog-load-more");
+    if (btn) btn.remove();
+    if (filteredPosts.length) {
+      renderBatch(0);
+    } else {
+      empty.style.display = "";
+    }
+  }
+
   // Render posts
   const PAGE_SIZE = 5;
   let visibleCount = 0;
@@ -54,19 +95,7 @@
 
   function setFilter(tag) {
     activeTag = activeTag === tag ? null : tag;
-    filteredPosts = getFilteredPosts();
-    // Clear existing posts
-    feed.innerHTML = "";
-    visibleCount = 0;
-    let btn = document.getElementById("blog-load-more");
-    if (btn) btn.remove();
-    // Re-render
-    if (filteredPosts.length) {
-      renderBatch(0);
-    } else {
-      empty.style.display = "";
-      empty.querySelector("p").textContent = `No posts tagged "${tag}".`;
-    }
+    applyFilter();
     // Update active tag buttons
     document.querySelectorAll(".blog-tag").forEach(el => {
       el.classList.toggle("is-active", el.dataset.tag === activeTag);
@@ -83,16 +112,21 @@
   }
 
   function renderPost(post, i) {
+    const isQuarterly = (post.tags || []).includes("Quarterly");
     const article = document.createElement("article");
-    article.className = "content-card blog-post reveal";
+    article.className = "content-card blog-post reveal" + (isQuarterly ? " is-quarterly" : "");
 
     const moodHtml = post.mood ? `<span class="blog-mood">${escapeHtml(post.mood)}</span>` : "";
     const thumbHtml = post.thumbnail ? `<div class="blog-thumb"><img src="${escapeHtml(post.thumbnail)}" alt="" loading="lazy"></div>` : "";
+    const quarterlyLabelHtml = isQuarterly
+      ? `<span class="blog-quarterly-label">📊 ${escapeHtml(post.title.match(/\d{4}\/Q\d/)?.[0] || "Quarterly Roundup")}</span>`
+      : "";
 
     article.innerHTML = `
       <div class="blog-post-header">
         <div>
           <p class="eyebrow">${formatDate(post.date)}</p>
+          ${quarterlyLabelHtml}
           <h3>${moodHtml}${escapeHtml(post.title)}</h3>
         </div>
         <div class="blog-tags">${(post.tags || []).map(t => `<span class="blog-tag" data-tag="${escapeHtml(t)}">${escapeHtml(t)}</span>`).join("")}</div>
