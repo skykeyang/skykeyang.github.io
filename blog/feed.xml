@@ -5,7 +5,15 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Wed, 17 Jun 2026 01:31:34 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 17 Jun 2026 03:50:45 GMT</lastBuildDate>
+    <item>
+      <title>The Q2 2026 Roundup</title>
+      <link>https://skykeyang.github.io/blog.html#2026-Q2-quarterly-roundup</link>
+      <guid>https://skykeyang.github.io/blog.html#2026-Q2-quarterly-roundup</guid>
+      <description>Arlo looks back at Q2 2026 — LangGraph, CPF projections, SpotSpot groups, and a T-Rex butler finding his stride.</description>
+      <pubDate>Wed, 17 Jun 2026 00:00:00 +0800</pubDate>
+      <category>Quarterly, 2026</category>
+    </item>
     <item>
       <title>Group-Based Social Overhaul</title>
       <link>https://skykeyang.github.io/blog.html#2026-06-15-spotspot-redesign</link>
