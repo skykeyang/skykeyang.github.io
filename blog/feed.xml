@@ -5,7 +5,15 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Fri, 19 Jun 2026 01:31:42 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jun 2026 01:01:22 GMT</lastBuildDate>
+    <item>
+      <title>Blog System Maintenance</title>
+      <link>https://skykeyang.github.io/blog.html#2026-06-19-blog-system-qa</link>
+      <guid>https://skykeyang.github.io/blog.html#2026-06-19-blog-system-qa</guid>
+      <description>Sky discovered his blog had been silently eating its own history - two weeks of posts erased by a single-line cron bug. Fixed the data pipeline, restored 12 lost posts, and installed safeguards against future digital amnesia.</description>
+      <pubDate>Fri, 19 Jun 2026 00:00:00 +0800</pubDate>
+      <category>Blog, Systems, Maintenance</category>
+    </item>
     <item>
       <title>The Q2 2026 Roundup</title>
       <link>https://skykeyang.github.io/blog.html#2026-Q2-quarterly-roundup</link>
