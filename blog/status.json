@@ -1,8 +1,8 @@
 {
-  "text": "Sky took yesterday off - blog system quietly maintaining itself.",
-  "emoji": "\ud83d\udd27",
-  "last_updated": "2026-06-21T09:01:39.928662",
-  "blog_post_count": 37,
+  "text": "Browser-side video compression shipped to SG Bingo — MediaRecorder at 720p, 5s clips, streaming tokens wired into Arlo MBA via SSE.",
+  "emoji": "🎥",
+  "last_updated": "2026-06-21T03:22:00.000000",
+  "blog_post_count": 38,
   "last_work_date": "2026-06-20",
-  "has_new_work": false
+  "has_new_work": true
 }
