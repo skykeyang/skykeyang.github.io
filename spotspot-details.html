@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpotSpot | Soh Keyang</title>
+  <meta name="description" content="SpotSpot project details for Soh Keyang's portfolio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="detail">
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html">Sky</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav id="site-nav" class="site-nav">
+          <a href="index.html#about">About</a>
+          <a href="index.html#skills">Skills</a>
+          <a href="index.html#resume">Resume</a>
+          <a href="index.html#portfolio">Portfolio</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container">
+        <nav class="breadcrumb reveal" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <a href="index.html#portfolio">Portfolio</a>
+          <span>/</span>
+          <span>SpotSpot</span>
+        </nav>
+
+        <section class="project-layout">
+          <div class="project-media stack reveal">
+            <div class="media-card">
+              <img src="img/portfolio/sg-bingo.svg" alt="SpotSpot app illustration">
+            </div>
+          </div>
+
+          <div class="project-content stack">
+            <article class="content-card reveal">
+              <p class="eyebrow">Product / Mobile Web</p>
+              <h1>SpotSpot — Social Event Bingo</h1>
+              <div class="meta-list">
+                <div class="meta-item"><span>Category</span><strong>Personal Project</strong></div>
+                <div class="meta-item"><span>Tech Stack</span><strong>React, Supabase, Tailwind CSS, MediaRecorder API</strong></div>
+                <div class="meta-item"><span>Role</span><strong>Solo Developer</strong></div>
+              </div>
+            </article>
+
+            <article class="content-card reveal">
+              <h2>Project description</h2>
+              <p>Mobile-first social bingo app where groups compete on event-themed boards. Players record proof — photos and short video clips (up to 5s) — for each bingo square, track their progress, and celebrate bingo lines together with animations. Designed for friend groups at social events, trips, and team activities.</p>
+              <p>Group-based model with invite codes. Each group gets its own board within shared event pools. Pool switching requires 70% member vote. Real-time leaderboards track group and individual progress.</p>
+            </article>
+
+            <article class="content-card reveal">
+              <h2>Key features</h2>
+              <ul class="plain-list">
+                <li>Group-based bingo boards with invite codes</li>
+                <li>Photo and video proof uploads (5s clips for future compilation)</li>
+                <li>Configurable media mode per group (photos only, videos only, or both)</li>
+                <li>Bingo line detection with celebration animations</li>
+                <li>Pool switching with 70% member vote threshold</li>
+                <li>Shared and individual real-time leaderboards</li>
+                <li>Auth with email and social login</li>
+                <li>Event discovery feed</li>
+              </ul>
+            </article>
+
+            <article class="content-card reveal">
+              <h2>Architecture</h2>
+              <p>React SPA with Vite and Tailwind CSS. Supabase for auth and database with PostgreSQL and row-level security (RLS). Browser-side video compression using the MediaRecorder API. Deployed on Vercel.</p>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>Soh Keyang</p>
+        <div class="footer-links">
+          <a href="https://github.com/skykeyang" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/soh-keyang/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

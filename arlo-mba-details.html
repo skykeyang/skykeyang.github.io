@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arlo MBA | Soh Keyang</title>
+  <meta name="description" content="Arlo MBA personal finance decision engine details for Soh Keyang's portfolio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="detail">
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html">Sky</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav id="site-nav" class="site-nav">
+          <a href="index.html#about">About</a>
+          <a href="index.html#skills">Skills</a>
+          <a href="index.html#resume">Resume</a>
+          <a href="index.html#portfolio">Portfolio</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container">
+        <nav class="breadcrumb reveal" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <a href="index.html#portfolio">Portfolio</a>
+          <span>/</span>
+          <span>Arlo MBA</span>
+        </nav>
+
+        <section class="project-layout">
+          <div class="project-media stack reveal">
+            <div class="media-card">
+              <img src="img/portfolio/arlo-mba.svg" alt="Arlo MBA architecture illustration">
+            </div>
+          </div>
+
+          <div class="project-content stack">
+            <article class="content-card reveal">
+              <p class="eyebrow">AI · Fintech · LangGraph</p>
+              <h1>Arlo MBA — Personal Finance Decision Engine</h1>
+              <div class="meta-list">
+                <div class="meta-item"><span>Category</span><strong>AI / Fintech</strong></div>
+                <div class="meta-item"><span>Tech Stack</span><strong>FastAPI, LangGraph, React, PostgreSQL, Anthropic Claude, SSE</strong></div>
+                <div class="meta-item"><span>Role</span><strong>Solo Developer</strong></div>
+              </div>
+            </article>
+
+            <article class="content-card reveal">
+              <h2>The problem</h2>
+              <p>Singaporeans navigating major financial decisions — housing, CPF, loans — face complex, interconnected choices. CPF alone has multiple accounts (OA/SA/MA), contribution caps, annual interest crediting, and housing usage rules that most people get wrong. Existing tools are static calculators — they don't reason about your situation.</p>
+            </article>
+
+            <article class="content-card reveal">
+              <h2>What I built</h2>
+              <p>An AI-powered personal finance engine using LangGraph state machines to orchestrate multi-step decision workflows.</p>
+              <ul class="plain-list">
+                <li><strong>Purchase Decision Graph</strong> — 8-node state machine that evaluates affordability using deterministic tools (debt-to-service ratio, savings runway, CPF projection). The LLM never generates financial numbers.</li>
+                <li><strong>CPF Projection Engine</strong> — 25-year timeline projecting CPF OA/SA/MA with accurate rules: 23%/6%/8% allocation on capped ordinary wages, annual Jan 1 interest crediting at 2.5%/4%/4%, housing downpayment and mortgage tracking.</li>
+                <li><strong>Scenario Comparison</strong> — Parallel projection branches to compare financial paths (e.g., buy vs rent, early CPF repayment vs investment).</li>
+                <li><strong>Profile Update Graph</strong> — Detect → Extract → Validate → Confirm → Save flow with dual-write to profile tables and journal entries.</li>
+                <li><strong>Real-Time Streaming</strong> — SSE endpoint with token-by-token response streaming, node progress visualization, and tool call events.</li>
+                <li><strong>Document Extraction</strong> — Vision-based document parsing with 10% discrepancy flagging against existing profile data.</li>
+              </ul>
+            </article>
+
+            <article class="content-card reveal">
+              <h2>Architecture</h2>
+              <p>FastAPI backend with LangGraph orchestration. React frontend. PostgreSQL for persistent data. Anthropic Claude for vision-based document parsing. GLM-5.2 as the primary LLM via OpenAI-compatible SDK. Supabase for authentication. SSE for real-time streaming.</p>
+            </article>
+
+            <article class="content-card reveal">
+              <h2>Challenges</h2>
+              <ul class="plain-list">
+                <li>CPF rules are non-trivial: allocation percentages, AW cap, annual (not monthly) interest, housing usage restrictions</li>
+                <li>Deterministic financial calculations must never be influenced by LLM hallucination — all numbers come from tools</li>
+                <li>LangGraph graphs must gracefully pass through to normal chat when they don't handle the intent</li>
+                <li>Single env toggle (<code>ENABLE_DECISION_GRAPH=false</code>) must disable all 4 graphs and revert to vanilla behavior</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>Soh Keyang</p>
+        <div class="footer-links">
+          <a href="https://github.com/skykeyang" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/soh-keyang/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
