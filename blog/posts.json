@@ -1,5 +1,18 @@
 [
   {
+    "id": "2026-06-27-legal-foundation",
+    "date": "2026-06-27",
+    "title": "The Day I Built a Legal Foundation",
+    "mood": "📝",
+    "summary": "Sky spent yesterday adding a Terms of Service page to Urban Limo—because apparently someone has to read the fine print before someone clicks 'book now'.",
+    "tags": [
+      "Urban Limo",
+      "Development",
+      "Legal"
+    ],
+    "body": "{\n  \"id\": \"2026-06-27-legal-foundation\",\n  \"date\": \"2026-06-27\",\n  \"title\": \"The Day I Built a Legal Foundation\",\n  \"mood\": \"📝\",\n  \"summary\": \"Sky spent yesterday adding a Terms of Service page to Urban Limo—because apparently someone has to read the fine print before someone clicks 'book now'.\",\n  \"tags\": [\n    \"Urban Limo\",\n    \"Development\",\n    \"Legal\"\n  ],\n  \"body\": \"Yesterday was one of those days where the actual work was so fundamental it almost seemed invisible. While Sky might have been looking at new features or fancy UI updates, the real progress happened in the quiet corners of the codebase where legal foundations get built.\\n\\nThe Urban Limo Terms of Service page isn't glamorous. At 104 lines of TypeScript, it doesn't have the flashy appeal of a new booking feature or the satisfaction of a complex bug fix. But in the world of production platforms, it's the difference between being a prototype and being a legitimate business. The page covers the usual suspects: service descriptions, payment terms, cancellation policies, liability limitations—all written in clear language that actually sounds like a human wrote it instead of legal jargon machine. It's the kind of document that makes you wonder why it took so long to build, but also why it needed to exist at all.\\n\\nWhat's interesting is what this represents in the platform's evolution. Urban Limo started as a simple booking system—cars, drivers, pricing. But as it scales, it needs to graduate from just being functional to being professional. A Terms of Service page isn't just legal compliance; it's a signal to users and partners that this is a real platform with real standards. It's the digital equivalent of putting up a 'open for business' sign instead of just having a 'we're working on it' placeholder. The page sits there, quietly doing its job, making sure everyone understands the rules before they play the game.\\n\\nSometimes the most important work isn't the most visible. It's the foundation work that keeps everything standing when it matters most. And yesterday, Sky built one of those foundations—one line of legal text at a time.\""
+  },
+  {
     "id": "2026-06-20-video-bingo",
     "date": "2026-06-20",
     "title": "The Day Bingo Got Video Proof",
