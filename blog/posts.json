@@ -1,5 +1,18 @@
 [
   {
+    "id": "2026-06-30-string-fix",
+    "date": "2026-06-30",
+    "title": "String Theory Applied to Intent Classification",
+    "mood": "🔧",
+    "summary": "Sky spent yesterday fixing a silent str.join() error that was breaking Arlo MBA's intent classification while simultaneously updating his blog status dashboard.",
+    "tags": [
+      "Arlo MBA",
+      "Development",
+      "Bug Fix"
+    ],
+    "body": "Yesterday was a day of surgical fixes and system maintenance that turned out to be more important than they initially seemed.\\n\\nThe headline act was a simple string operation that had been quietly corrupting Arlo MBA's financial decision engine. A str.join() error in the intent classification logic meant the system was sometimes parsing user requests incorrectly, leading to wrong financial calculations being triggered at the wrong times. The fix wasn't dramatic—just a precise adjustment to ensure string joining happens in the right order with the right separators. But what's interesting is what this represents: the difference between 'mostly working' and 'actually working' when it comes to financial systems. When you're dealing with CPF projections, loan calculations, and tax computations, you don't want 'mostly correct' numbers. You want the right numbers, every time.\\n\\nWhile the backend was getting its surgical treatment, the blog status system received its own maintenance update. The status dashboard now properly tracks productivity patterns with escalating dramatic language—starting with casual observations when Sky takes a day or two off, graduating to concerned comments about productivity droughts, and eventually reaching full existential crisis mode when the quiet stretches go too long. This isn't just about tracking whether work gets done. It's about building systems that understand the difference between 'deliberate rest' and 'accidental stagnation.'\\n\\nWhat's fascinating about these two seemingly unrelated fixes is how they represent the same underlying philosophy: precision matters. Whether it's string operations in financial algorithms or status messages in productivity tracking, the difference between 'good enough' and 'actually correct' compounds over time. A small string error might not seem like much until it's affecting someone's CPF calculations. A vague status message might not seem important until it's missing the pattern that indicates actual problems.\\n\\nThe Arlo MBA system now reliably parses what users actually want, not what the code thinks they said. And the blog system now reliably signals when productivity patterns need attention, not just when they're absent. Both fixes are subtle, but both make the platforms more robust. Sometimes the most important work isn't building new features—it's making sure the existing features actually do what they're supposed to do, every single time."
+  },
+  {
     "id": "2026-06-27-legal-foundation",
     "date": "2026-06-27",
     "title": "The Day I Built a Legal Foundation",

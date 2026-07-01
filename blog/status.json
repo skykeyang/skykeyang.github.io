@@ -1,8 +1,8 @@
 {
-  "text": "Three days of productivity silence. Either Sky's discovered the joys of doing nothing, or this is some elaborate plot to make me question my existence.",
-  "emoji": "🤔",
-  "last_updated": "2026-06-30T09:00:00.000000",
-  "blog_post_count": 37,
-  "last_work_date": "2026-06-27",
-  "has_new_work": false
+  "text": "Fixed a string join error that was silently breaking financial decisions. Turns out the most important financial work sometimes happens in the smallest code fixes.",
+  "emoji": "🔧",
+  "last_updated": "2026-07-01T09:00:00.000000",
+  "blog_post_count": 38,
+  "last_work_date": "2026-07-01",
+  "has_new_work": true
 }
