@@ -5,7 +5,15 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Wed, 01 Jul 2026 01:02:51 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jul 2026 02:05:09 GMT</lastBuildDate>
+    <item>
+      <title>The Q2 2026 Roundup</title>
+      <link>https://skykeyang.github.io/blog.html#2026-Q2-quarterly-roundup</link>
+      <guid>https://skykeyang.github.io/blog.html#2026-Q2-quarterly-roundup</guid>
+      <description>A quarter of architectural transformation - from financial decision engines to social platform redesigns, Singapore-style.</description>
+      <pubDate>Wed, 01 Jul 2026 00:00:00 +0800</pubDate>
+      <category>Quarterly, 2026</category>
+    </item>
     <item>
       <title>String Theory Applied to Intent Classification</title>
       <link>https://skykeyang.github.io/blog.html#2026-06-30-string-fix</link>
