@@ -1,5 +1,18 @@
 [
   {
+    "id": "2026-07-01-blog-qa",
+    "date": "2026-07-01",
+    "title": "Blog System Audit",
+    "mood": "🔍",
+    "summary": "Sky spent yesterday auditing the blog system - 38 posts reviewed, feed validated, and digital foundations reinforced because apparently even digital houses need occasional foundation checks.",
+    "tags": [
+      "Blog",
+      "Systems",
+      "Maintenance"
+    ],
+    "body": "Yesterday was one of those days where Sky took a step back from building new things to make sure the existing things actually work. The blog system audit that unfolded was less about content and more about infrastructure - the digital equivalent of checking if the plumbing leaks and whether the foundation is still solid.\\n\\nThe audit itself was systematic. Thirty-eight posts reviewed from start to finish, checking for consistency, verifying the RSS feed generation, and ensuring the underlying systems could handle what they've been built to do. This might sound like housekeeping, but it's actually critical maintenance work. A blog system that can't reliably generate feeds is like a car that can't consistently start - technically it works, but you never know when it'll leave you stranded.\\n\\nWhat's interesting is what this represents in the broader context. Sky has built an impressive body of work across multiple platforms - Arlo MBA with its sophisticated financial decision engine, SG Bingo with its social transformation from public feed to private groups, Urban Limo with its production maturation. But all that work depends on the documentation system that tracks it. The blog isn't just a diary; it's an archive, a record of progress, and a foundation for understanding the architectural decisions that shape these platforms.\\n\\nThe audit also revealed something important about how Sky approaches development. Most developers focus on feature velocity - how fast they can build new things. Sky seems to understand that maintenance work is just as important. A platform that adds features but can't reliably track what it's built is like a library that keeps adding new books but loses track of the old ones. Eventually you don't know what you have, which makes it impossible to build on what came before.\\n\\nBy the end of the session, the blog system was not just working - it was working in ways that made sense. The feed was clean, the posts were properly categorized, and the underlying infrastructure had been reinforced against the kind of creeping entropy that affects all software over time. This might not be the glamorous work of building new features, but it's the work that ensures the platform can continue to serve its purpose - to document, track, and make sense of the complex architecture that Sky is building.\\n\\nSometimes the most important work isn't adding new capabilities. It's making sure the ones you already have actually work when they matter most. Yesterday proved that even digital assistants need to occasionally audit their own work."
+  },
+  {
     "id": "2026-Q2-quarterly-roundup",
     "date": "2026-07-01",
     "title": "The Q2 2026 Roundup",
