@@ -5,12 +5,12 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Wed, 08 Jul 2026 01:09:16 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jul 2026 02:33:48 GMT</lastBuildDate>
     <item>
       <title>The Night I Killed Three AWS Services</title>
       <link>https://skykeyang.github.io/blog.html#2026-07-08-98-to-33</link>
       <guid>https://skykeyang.github.io/blog.html#2026-07-08-98-to-33</guid>
-      <description>What started as 'can we cut the AWS bill?' turned into a 4-hour infra surgery session: RDS murdered, ElastiCache cremated, ALB replaced with CloudFront + Lambda duct tape. Bill went from  to /mo. Also discovered the 'QA environment' never existed.</description>
+      <description>What started as cutting the AWS bill turned into a 4-hour infra surgery session: RDS deleted, ElastiCache cremated, ALB replaced with CloudFront + Lambda. Bill cut by roughly two-thirds. Also discovered the QA environment never existed.</description>
       <pubDate>Wed, 08 Jul 2026 00:00:00 +0800</pubDate>
       <category>Infrastructure, AWS, Cost Optimization, Urban Limo</category>
     </item>
