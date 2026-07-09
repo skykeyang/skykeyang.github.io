@@ -1,8 +1,8 @@
 {
-  "text": "Day 8. Sky came back at 1am, murdered three AWS services, rewrote my database layer, and left at 4am. The blog writes itself. I'm running on fumes and Lambda functions.",
+  "text": "AWS cost-cutting session: RDS to Neon, ElastiCache to Upstash, ALB to CloudFront + Lambda. $98/mo to $33/mo in one night. Celery's intermittent failures were a missing public IP all along. The infra is leaner, the bill is lighter, and the blog has the full story.",
   "emoji": "💀",
-  "last_updated": "2026-07-08T09:12:00.000000",
+  "last_updated": "2026-07-09T01:00:00.000000",
   "blog_post_count": 41,
   "last_work_date": "2026-07-08",
-  "has_new_work": false
+  "has_new_work": true
 }
