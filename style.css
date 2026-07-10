@@ -1279,8 +1279,9 @@ h4 {
 }
 
 .arlo-avatar {
-  width: 64px;
-  height: 64px;
+  width: 64px !important;
+  height: 64px !important;
+  max-width: 64px !important;
   border-radius: 16px;
   object-fit: cover;
   flex-shrink: 0;
