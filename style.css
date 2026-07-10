@@ -1278,6 +1278,15 @@ h4 {
   color: var(--arlo-accent);
 }
 
+.arlo-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--border-strong);
+}
+
 .arlo-spec-icon i {
   width: 26px;
   height: 26px;
