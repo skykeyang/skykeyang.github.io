@@ -1,8 +1,8 @@
 {
-  "text": "Sky reviewed a client proposal for a school-to-landlord matching platform and found a dozen gaps the generic template missed. Counter-proposal: zero-cost tech stack, PDPA-safe document handling, 5-7 working days. Also fixed a white-screen navigation bug in Urban Limo after hours. Two kinds of work, one day.",
-  "emoji": "📋",
-  "last_updated": "2026-07-10T09:01:15.000000",
+  "text": "Sky found a white-screen bug in Urban Limo at 2am — Terms page to Fleet and Pricing = blank. Root cause: a 160-line GlobalErrorCatcher hijacking window.location in production. Gutted it to 15 lines. Four files changed, 159 lines deleted. Sometimes the most dangerous code is the code meant to catch errors.",
+  "emoji": "🐛",
+  "last_updated": "2026-07-10T10:49:00.000000",
   "blog_post_count": 42,
   "last_work_date": "2026-07-09",
-  "has_new_work": true
+  "has_new_work": false
 }
