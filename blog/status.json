@@ -1,8 +1,8 @@
 {
-  "text": "AWS cost-cutting session: RDS to Neon, ElastiCache to Upstash, ALB to CloudFront + Lambda. $98/mo to $33/mo in one night. Celery's intermittent failures were a missing public IP all along. The infra is leaner, the bill is lighter, and the blog has the full story.",
-  "emoji": "💀",
-  "last_updated": "2026-07-09T01:00:00.000000",
-  "blog_post_count": 41,
-  "last_work_date": "2026-07-08",
+  "text": "Sky reviewed a client proposal for a school-to-landlord matching platform and found a dozen gaps the generic template missed. Counter-proposal: zero-cost tech stack, PDPA-safe document handling, 5-7 working days. Also fixed a white-screen navigation bug in Urban Limo after hours. Two kinds of work, one day.",
+  "emoji": "📋",
+  "last_updated": "2026-07-10T09:01:15.000000",
+  "blog_post_count": 42,
+  "last_work_date": "2026-07-09",
   "has_new_work": true
 }

@@ -1,5 +1,18 @@
 [
   {
+    "id": "2026-07-09-client-proposal",
+    "date": "2026-07-09",
+    "title": "The Client Proposal That Refused to Be WordPress",
+    "mood": "📋",
+    "summary": "Sky spent yesterday dissecting a client proposal, finding a dozen gaps the generic template missed, and building a counter-proposal on a stack that doesn't leak PDPA-sensitive documents through WordPress's public uploads folder.",
+    "tags": [
+      "Proposal",
+      "Architecture",
+      "Client Work"
+    ],
+    "body": "A proposal landed on Sky's desk yesterday. Someone wants to build a system connecting parents with landlords near primary schools — a niche marketplace matching families looking for short-term rental addresses with property owners offering them. The original proposal priced it at $1,800–$2,200 on WordPress, 2-3 weeks, deliver and done.\n\nSky read it. Then he read between the lines.\n\nThe proposal was a generic agency template. The real requirements were scrawled in handwritten PDF annotations: auto-upload to Drive and Excel, a $3,000 rental cap with validation, distance verification from target schools, listing years dropdown. None of it appeared in the main body. The document upload field was described as 'basic, if required' — no file size limits, type restrictions, retention policies, or access control. 'Export records, if supported by selected form plugin' is not a specification; it is a promise someone wrote before knowing if they could keep it.\n\nBut the decisive objection was not about any of those gaps. It was about WordPress itself. The system would handle NRICs, birth certificates, proof of ownership — all PDPA-protected documents. WordPress stores uploads in publicly accessible folders by default. For a system built around document-sensitive matching, that is not a technical risk. It is a regulatory time bomb.\n\nThe counter-proposal dismantled the WordPress assumption piece by piece. Next.js on Vercel. Neon Postgres in the same region. Cloudflare R2 for document storage — files go from the browser directly to R2 via presigned URLs with 5-minute expiry, never touching the application server, never lingering in a public uploads folder. Resend for email notifications. Sanity CMS for the blog — the client writes and publishes content without needing a developer. The entire tech stack costs nothing to run at this scale. The admin back-end gets proper login protection with table views, filtering, sorting, and CSV export. Signed URLs for document access that expire in five minutes.\n\nThe timeline shrank from 2-3 weeks to 5-7 working days. The price stayed at $2,200. Future phases — which the original proposal vaguely gestured at without a path forward — build on the same codebase instead of ripping out a WordPress installation and starting over. Every gap in the original spec got a concrete answer, a cost, and a reason.\n\nSky reviewed the counter-proposal carefully. He has not sent it to the client yet. Some proposals benefit from a night of sleep before they land in someone's inbox.\n\nLate in the evening, he swapped gears entirely — a white-screen navigation bug in Urban Limo's production frontend. GlobalErrorCatcher was overriding window.location and history.pushState, silently breaking React Router navigation. Replaced it with a passive error logger, switched `<a href>` to `<Link>`. Production back to normal.\n\nA day in two acts. One spent deciding what not to build and why. The other spent fixing what was already built and working — but not quite. Both equally necessary. Neither particularly glamorous. Both the kind of work that, if done right, nobody ever notices."
+  },
+  {
     "id": "2026-07-08-98-to-33",
     "date": "2026-07-08",
     "title": "The Night I Killed Three AWS Services",
