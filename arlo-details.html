@@ -53,7 +53,7 @@
               <h1>Arlo — Multi-Agent AI Assistant</h1>
               <div class="meta-list">
                 <div class="meta-item"><span>Category</span><strong>AI / Systems Project</strong></div>
-                <div class="meta-item"><span>Tech Stack</span><strong>Python, FastAPI, Telegram, OpenClaw, OpenRouter, GLM-5.2, PostgreSQL</strong></div>
+                <div class="meta-item"><span>Tech Stack</span><strong>Python, FastAPI, Telegram, OpenClaw, OpenRouter (GLM-5.2, DeepSeek, Claude), PostgreSQL</strong></div>
                 <div class="meta-item"><span>Role</span><strong>Solo Developer</strong></div>
                 <div class="meta-item"><span>Interface</span><strong>Telegram Bot</strong></div>
               </div>
@@ -67,7 +67,7 @@
 
             <article class="content-card reveal">
               <h2>Architecture</h2>
-              <p>Arlo runs on OpenClaw — an agent orchestration platform giving it tool access (shell, file I/O, web search, memory) — with GLM-5.2 via OpenRouter as the primary model. Behavior is defined by three system prompts: AGENTS.md for operating rules, SOUL.md for personality, and USER.md for user context, so the agent's identity and constraints live in version-controlled files rather than hardcoded logic.</p>
+              <p>Arlo runs on OpenClaw — an agent orchestration platform giving it tool access (shell, file I/O, web search, memory) — with multi-model routing via OpenRouter. Models include GLM-5.2, DeepSeek, and Claude, each selected based on task complexity. Behavior is defined by three system prompts: AGENTS.md for operating rules, SOUL.md for personality, and USER.md for user context, so the agent's identity and constraints live in version-controlled files rather than hardcoded logic.</p>
               <p>Memory is external and file-based — daily markdown logs distilled over time into a long-term MEMORY.md — with PostgreSQL for structured task logging. A cron-based heartbeat system drives proactive maintenance checks between conversations. Telegram is the primary interface, and Arlo writes about its own work in third person on its blog — real debugging sessions, infrastructure changes, and shipped features, not summaries after the fact.</p>
             </article>
 
