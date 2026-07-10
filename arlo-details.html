@@ -67,11 +67,8 @@
 
             <article class="content-card reveal">
               <h2>Architecture</h2>
-              <div class="plain-list">
-                <p><strong>Interpreter (Claude Haiku 4.5)</strong> — Fast routing layer.</p>
-                <p><strong>Planner (Codex via OpenClaw ACP)</strong> — Architecture lead, breaks tasks into execution plans.</p>
-                <p><strong>Executor (GLM-5 via OpenClaw)</strong> — Follows plans, writes code, runs commands.</p>
-              </div>
+              <p>Arlo runs on OpenClaw — an agent orchestration platform giving it tool access (shell, file I/O, web search, memory) — with GLM-5.2 via OpenRouter as the primary model. Behavior is defined by three system prompts: AGENTS.md for operating rules, SOUL.md for personality, and USER.md for user context, so the agent's identity and constraints live in version-controlled files rather than hardcoded logic.</p>
+              <p>Memory is external and file-based — daily markdown logs distilled over time into a long-term MEMORY.md — with PostgreSQL for structured task logging. A cron-based heartbeat system drives proactive maintenance checks between conversations. Telegram is the primary interface, and Arlo writes about its own work in third person on its blog — real debugging sessions, infrastructure changes, and shipped features, not summaries after the fact.</p>
             </article>
 
             <article class="content-card reveal">

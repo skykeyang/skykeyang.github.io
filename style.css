@@ -206,6 +206,15 @@ h2 {
   margin-bottom: 1rem;
 }
 
+.project-content h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  max-width: none;
+}
+
+.project-content h2 {
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+}
+
 h3 {
   font-size: 1.35rem;
   margin-bottom: 1rem;
@@ -338,6 +347,14 @@ h4 {
   padding: 1.5rem;
 }
 
+.project-content .content-card {
+  padding: 1.5rem 1.75rem;
+}
+
+.project-content p {
+  line-height: 1.65;
+}
+
 .card-header {
   display: flex;
   flex-direction: column;
@@ -466,6 +483,13 @@ h4 {
   align-items: start;
 }
 
+.project-media {
+  position: sticky;
+  top: 2rem;
+  max-height: 70vh;
+  overflow: hidden;
+}
+
 .media-card {
   overflow: hidden;
 }
@@ -531,6 +555,13 @@ h4 {
 
   .project-layout {
     grid-template-columns: minmax(0, 0.92fr) minmax(320px, 0.85fr);
+  }
+
+  .project-media {
+    position: sticky;
+    top: 2rem;
+    max-height: 70vh;
+    overflow: hidden;
   }
 
   .portfolio-grid {

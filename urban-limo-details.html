@@ -82,7 +82,8 @@
 
             <article class="content-card reveal">
               <h2>Architecture & DevOps</h2>
-              <p>Monorepo with Turborepo + pnpm. FastAPI backend (async SQLAlchemy + Alembic migrations) on AWS ECS Fargate, React/TypeScript + Tailwind frontends (customer + admin), PostgreSQL on RDS, Celery workers on ECS, S3 for document storage, CloudWatch for logging. Automated deployment pipeline with ECR + ECS task definition rolling updates.</p>
+              <p>FastAPI backend (async SQLAlchemy + Alembic migrations) runs on AWS ECS Fargate (ap-southeast-1), with a React + TypeScript + Tailwind frontend deployed on AWS Amplify. Database migrated from RDS to Neon Serverless Postgres and Redis migrated from ElastiCache to Upstash Redis, both for cost optimization. Celery workers run on ECS Fargate using Upstash as broker/backend for async jobs, S3 handles document storage, Stripe checkout + Stripe Connect handle payments and driver payouts, and auth is JWT + Twilio SMS OTP.</p>
+              <p>CloudFront now sits in front of the stack in place of an ALB, cutting cost while adding CDN caching, with Route53 and a Lambda function handling dynamic DNS updates as ECS tasks cycle. These changes — CloudFront over ALB, Neon over RDS, Upstash over ElastiCache — brought monthly infra cost down from ~$98/mo to ~$33/mo without touching the app layer.</p>
             </article>
           </div>
         </section>
