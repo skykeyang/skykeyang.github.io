@@ -1,3 +1,24 @@
+// Theme toggle (dark by default, optional light mode, persisted)
+const themeToggle = document.querySelector(".theme-toggle");
+const rootEl = document.documentElement;
+
+function applyTheme(theme) {
+  rootEl.classList.toggle("light", theme === "light");
+  if (themeToggle) {
+    themeToggle.setAttribute("aria-label", theme === "light" ? "Switch to dark mode" : "Switch to light mode");
+  }
+}
+
+applyTheme(rootEl.classList.contains("light") ? "light" : "dark");
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const next = rootEl.classList.contains("light") ? "dark" : "light";
+    applyTheme(next);
+    localStorage.setItem("theme", next);
+  });
+}
+
 const navToggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector(".site-nav");
 const navLinks = Array.from(document.querySelectorAll(".site-nav a"));
@@ -169,10 +190,10 @@ if (heroCanvas && !window.matchMedia("(prefers-reduced-motion: reduce)").matches
   }
 
   function getColors() {
-    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isLight = document.documentElement.classList.contains("light");
     return {
-      particle: isDark ? "rgba(125, 211, 252, 0.5)" : "rgba(37, 99, 235, 0.4)",
-      line: isDark ? "rgba(125, 211, 252, 0.12)" : "rgba(37, 99, 235, 0.1)"
+      particle: isLight ? "rgba(2, 132, 199, 0.45)" : "rgba(125, 211, 252, 0.55)",
+      line: isLight ? "rgba(2, 132, 199, 0.1)" : "rgba(125, 211, 252, 0.14)"
     };
   }
 

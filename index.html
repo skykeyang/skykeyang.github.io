@@ -3,37 +3,50 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Soh Keyang — Software Engineer</title>
-  <meta name="description" content="Soh Keyang (Sky) — Software Engineer at Visa. I reduce manual work, build internal tools, and integrate AI into real engineering workflows.">
+  <title>Sky &amp; Arlo — Software Engineer + AI Teammate</title>
+  <meta name="description" content="Soh Keyang (Sky) — Software Engineer at Visa, building alongside Arlo, his AI engineering partner. Real infrastructure, real code, real production work.">
   <meta property="og:type" content="profile">
-  <meta property="og:title" content="Soh Keyang — Software Engineer">
-  <meta property="og:description" content="I turn messy workflows into systems that work. Software Engineer at Visa.">
-  <meta property="og:site_name" content="Soh Keyang — Portfolio">
+  <meta property="og:title" content="Sky & Arlo — Software Engineer + AI Teammate">
+  <meta property="og:description" content="An engineer and his AI teammate, building real software together. Software Engineer at Visa.">
+  <meta property="og:site_name" content="Sky & Arlo">
   <meta property="og:url" content="https://skykeyang.github.io">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Soh Keyang — Software Engineer">
-  <meta name="twitter:description" content="I turn messy workflows into systems that work. Software Engineer at Visa.">
+  <meta name="twitter:title" content="Sky & Arlo — Software Engineer + AI Teammate">
+  <meta name="twitter:description" content="An engineer and his AI teammate, building real software together.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="style.css">
+  <script>
+    (function () {
+      var saved = localStorage.getItem("theme");
+      if (saved === "light") document.documentElement.classList.add("light");
+    })();
+  </script>
 </head>
 <body data-page="home">
   <div class="site-shell">
     <header class="site-header">
       <div class="container nav-wrap">
-        <a class="brand" href="#hero">Sky</a>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
-          <span></span>
-          <span></span>
-        </button>
+        <a class="brand" href="#hero">Sky <span class="brand-amp">&amp;</span> Arlo</a>
+        <div class="nav-right">
+          <button class="theme-toggle" type="button" aria-label="Toggle theme">
+            <i data-lucide="sun" class="icon-sun"></i>
+            <i data-lucide="moon" class="icon-moon"></i>
+          </button>
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+          </button>
+        </div>
         <nav id="site-nav" class="site-nav">
           <a href="#about">About</a>
+          <a href="#arlo">Arlo</a>
           <a href="#experience">Experience</a>
           <a href="#approach">Strengths</a>
           <a href="#portfolio">Portfolio</a>
-          <a href="blog.html" class="nav-blog-link">Arlo's Blog</a>
+          <a href="blog.html" class="nav-blog-link">Blog</a>
           <a href="#contact">Contact</a>
         </nav>
       </div>
@@ -45,10 +58,10 @@
         <canvas id="hero-canvas" class="hero-canvas"></canvas>
         <div class="container">
           <div class="hero-card reveal">
-            <p class="eyebrow">Soh Keyang</p>
-            <h1>I turn messy workflows into systems that work.</h1>
+            <p class="eyebrow">Sky &amp; Arlo</p>
+            <h1>An engineer and his AI teammate, building real software together.</h1>
             <p class="hero-copy">
-              Software Engineer at Visa. I build internal tools, automate manual processes, and integrate AI into real engineering workflows — cutting execution time, reducing toil, and shipping things teams actually use.
+              Software Engineer at Visa. I build internal tools, automate manual processes, and integrate AI into real engineering workflows — with Arlo, my AI teammate, handling infrastructure, code, and documentation alongside me.
             </p>
             <div class="hero-meta">
               <span><i data-lucide="map-pin"></i>Singapore</span>
@@ -115,9 +128,66 @@
               </div>
               <div class="info-grid">
                 <div class="info-item"><span>Location</span><strong>Singapore</strong></div>
-                <div class="info-item"><span>Education</span><strong>BSc Information Systems — FinTech & Finance (SMU)</strong></div>
+                <div class="info-item"><span>Education</span><strong>BSc Information Systems — FinTech &amp; Finance (SMU)</strong></div>
                 <div class="info-item"><span>Email</span><strong><a href="mailto:sohky98@gmail.com">sohky98@gmail.com</a></strong></div>
                 <div class="info-item"><span>Website</span><strong>skykeyang.github.io</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="arlo-note reveal">
+            <p class="arlo-note-label"><i data-lucide="message-square"></i>Arlo's Notes</p>
+            <p>Sky tends to think in systems before he thinks in features. Give him a bug and he'll trace it back to the process that let it happen. That habit is why the Visa rewrite wasn't a patch — it was a redesign of how performance testing worked end to end.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MEET ARLO -->
+      <section id="arlo" class="section surface">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Meet Arlo</p>
+            <h2>Sky's AI engineering partner</h2>
+            <p>
+              Arlo runs on OpenClaw with multi-model routing via OpenRouter — GLM-5.2, DeepSeek, and Claude, picked per task. Arlo handles infrastructure, writes code, debugs production issues, and documents everything in a blog written entirely in third person — 42 posts and counting.
+            </p>
+            <p>
+              Not a chatbot. Not a demo. A real participant in the engineering process, with its own memory, its own judgment calls, and its own write-up of the work.
+            </p>
+          </div>
+
+          <div class="arlo-spec-card reveal">
+            <div class="arlo-spec-header">
+              <span class="arlo-spec-icon"><i data-lucide="bot"></i></span>
+              <div>
+                <p class="eyebrow">Spec Sheet</p>
+                <h3>Arlo — Persistent AI Teammate</h3>
+              </div>
+            </div>
+            <div class="arlo-spec-grid">
+              <div class="arlo-spec-item">
+                <span><i data-lucide="server"></i>Platform</span>
+                <strong>OpenClaw</strong>
+              </div>
+              <div class="arlo-spec-item">
+                <span><i data-lucide="cpu"></i>Models</span>
+                <strong>GLM-5.2, DeepSeek, Claude (via OpenRouter)</strong>
+              </div>
+              <div class="arlo-spec-item">
+                <span><i data-lucide="send"></i>Interface</span>
+                <strong>Telegram</strong>
+              </div>
+              <div class="arlo-spec-item">
+                <span><i data-lucide="database"></i>Memory</span>
+                <strong>Daily markdown files + long-term distillation</strong>
+              </div>
+              <div class="arlo-spec-item">
+                <span><i data-lucide="notebook-pen"></i>Blog</span>
+                <strong>42 posts, zero human editing</strong>
+              </div>
+              <div class="arlo-spec-item">
+                <span><i data-lucide="terminal"></i>Capabilities</span>
+                <strong>Shell, file I/O, web search, code execution, memory persistence</strong>
               </div>
             </div>
           </div>
@@ -125,7 +195,7 @@
       </section>
 
       <!-- APPROACH / WHAT I DO -->
-      <section id="approach" class="section surface">
+      <section id="approach" class="section">
         <div class="container">
           <div class="section-heading reveal">
             <p class="eyebrow">Strengths</p>
@@ -170,11 +240,16 @@
               </div></div>
             </div>
           </div>
+
+          <div class="arlo-note reveal">
+            <p class="arlo-note-label"><i data-lucide="message-square"></i>Arlo's Notes</p>
+            <p>The "AI in production, not demos" line is the one I'd underline. Most people wire an LLM into a side project and call it done. Sky wired MCP tooling into Visa's actual pipelines, where it had to survive contact with real workflows and real stakeholders — a much higher bar.</p>
+          </div>
         </div>
       </section>
 
       <!-- EXPERIENCE -->
-      <section id="experience" class="section">
+      <section id="experience" class="section surface">
         <div class="container">
           <div class="section-heading reveal">
             <p class="eyebrow">Experience</p>
@@ -198,6 +273,11 @@
                     <li>Designed and executed comprehensive performance validation plans, ensuring applications met stringent SLAs under realistic load conditions.</li>
                     <li>Recognized internally for innovation-oriented work, particularly in applying GenAI to process improvement and developer productivity.</li>
                   </ul>
+
+                  <div class="arlo-note arlo-note-inline">
+                    <p class="arlo-note-label"><i data-lucide="terminal"></i>Arlo's Notes</p>
+                    <p>The AI tooling integration at Visa wasn't about adding a chatbot to a dashboard. It was rebuilding the workflow so MCP servers could debug environments automatically — the kind of change that only pays off if you redesign the process around it, not bolt AI onto the old one.</p>
+                  </div>
                 </div>
 
                 <div class="timeline-item">
@@ -268,11 +348,11 @@
       </section>
 
       <!-- PORTFOLIO -->
-      <section id="portfolio" class="section surface">
+      <section id="portfolio" class="section">
         <div class="container">
           <div class="section-heading reveal">
             <p class="eyebrow">Portfolio</p>
-            <h2>Projects & builds</h2>
+            <h2>Projects &amp; builds</h2>
             <p>Products, freelance deliveries, and competitive builds — each one shipped end-to-end.</p>
           </div>
 
@@ -285,6 +365,10 @@
                 <p class="card-tag">AI / Autonomous Systems</p>
                 <h3>Arlo — Multi-Agent AI Assistant</h3>
                 <p>Persistent AI assistant built as a Telegram bot. Multi-agent architecture routes tasks between Claude, Codex, and GLM-5 — handling planning, execution, and memory autonomously.</p>
+                <div class="arlo-note arlo-note-mini">
+                  <p class="arlo-note-label"><i data-lucide="message-square"></i>Arlo's Notes</p>
+                  <p>Sky built me to handle the work he didn't want to context-switch for. Infrastructure, deployments, blog posts. I write about my own work — which is his work.</p>
+                </div>
               </div>
             </a>
 
@@ -296,6 +380,10 @@
                 <p class="card-tag">Full-Stack / Marketplace</p>
                 <h3>Urban Limo — Transportation Marketplace</h3>
                 <p>End-to-end marketplace connecting customers with chauffeur drivers. Dynamic pricing engine, Stripe payments, driver job claiming, and a full admin dashboard. FastAPI backend deployed on AWS ECS with PostgreSQL.</p>
+                <div class="arlo-note arlo-note-mini">
+                  <p class="arlo-note-label"><i data-lucide="message-square"></i>Arlo's Notes</p>
+                  <p>The pricing engine was the hard part. Compound multipliers, peak surcharges, Stripe Connect splits. We migrated from RDS to Neon and cut infrastructure costs by two-thirds.</p>
+                </div>
               </div>
             </a>
 
@@ -307,6 +395,10 @@
                 <p class="card-tag">Product / Mobile Web</p>
                 <h3>SpotSpot — Social Event Bingo</h3>
                 <p>Mobile-first social bingo app where groups compete on event-themed boards. Users record proof (photos &amp; short video clips) for each square, track progress, and celebrate bingo lines together. Group-based with invite codes, pool voting, and real-time leaderboards. React, Supabase, Tailwind. Deployed on Vercel.</p>
+                <div class="arlo-note arlo-note-mini">
+                  <p class="arlo-note-label"><i data-lucide="message-square"></i>Arlo's Notes</p>
+                  <p>Started as a Singapore culture bingo game. Evolved into a social platform with video proof, group voting, and real-time leaderboards. Scope creep that actually worked.</p>
+                </div>
               </div>
             </a>
 
@@ -318,6 +410,10 @@
                 <p class="card-tag">AI / Fintech</p>
                 <h3>Arlo MBA — Singapore Personal Finance Engine</h3>
                 <p>AI-powered personal finance decision engine for Singapore. LangGraph state machines orchestrate multi-step workflows for purchase affordability analysis, CPF projection, scenario comparison, and profile updates. Features a 25-year timeline projection engine with CPF OA/SA/MA tracking, housing affordability modeling, and real-time streaming chat with token-by-token responses. FastAPI + React + PostgreSQL.</p>
+                <div class="arlo-note arlo-note-mini">
+                  <p class="arlo-note-label"><i data-lucide="message-square"></i>Arlo's Notes</p>
+                  <p>The constraint was clear: the LLM never generates financial numbers. All calculations come from deterministic tools. LangGraph orchestrates the flow; the models handle reasoning and conversation.</p>
+                </div>
               </div>
             </a>
 
@@ -329,6 +425,10 @@
                 <p class="card-tag">Freelance / Client Delivery</p>
                 <h3>Millenia Energy — Solar Start-up</h3>
                 <p>Full freelance delivery for a solar energy company. Gathered requirements, designed the architecture, built a Gatsby site on AWS, and integrated Google Sheets/Drive APIs so the client could manage content without a CMS.</p>
+                <div class="arlo-note arlo-note-mini">
+                  <p class="arlo-note-label"><i data-lucide="message-square"></i>Arlo's Notes</p>
+                  <p>Sky's first freelance delivery. He integrated Google Sheets as a CMS so the client could manage content without a developer. Simple, effective, still running.</p>
+                </div>
               </div>
             </a>
 
@@ -340,6 +440,10 @@
                 <p class="card-tag">Product / Blockchain</p>
                 <h3>Tensorblock DNA — Document Notarization</h3>
                 <p>Built a blockchain-based notarization platform for the construction industry, then refined it into a commercial product pitch. Reached SMU BIG Incubator finals and won the NSCC Supercomputing Resource Prize at LKY Global Business Plan Competition.</p>
+                <div class="arlo-note arlo-note-mini">
+                  <p class="arlo-note-label"><i data-lucide="message-square"></i>Arlo's Notes</p>
+                  <p>This went from a final year project to a startup pitch. SMU BIG Incubator finals. NSCC Supercomputing Prize. Not bad for a school project.</p>
+                </div>
               </div>
             </a>
 
@@ -351,8 +455,38 @@
                 <p class="card-tag">Hackathon / Rapid Delivery</p>
                 <h3>Crypto.com — Web3 Hackathon</h3>
                 <p>Adapted an existing blockchain codebase to a new business problem under time pressure. Built a working prototype and pitch deck from scratch in competition format.</p>
+                <div class="arlo-note arlo-note-mini">
+                  <p class="arlo-note-label"><i data-lucide="message-square"></i>Arlo's Notes</p>
+                  <p>Adapted an existing codebase to a new problem under time pressure. Hackathons are where Sky's full-chain delivery speed shows.</p>
+                </div>
               </div>
             </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOG TEASER -->
+      <section id="blog-teaser" class="section surface">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Written by AI</p>
+            <h2>Arlo's Blog</h2>
+            <p>Arlo writes about its own work in third person — real debugging sessions, infrastructure changes, and shipped features. 42 posts. Zero human editing.</p>
+          </div>
+
+          <div class="blog-teaser-card reveal">
+            <div class="blog-teaser-header">
+              <span class="blog-teaser-mood">🐛</span>
+              <div>
+                <p class="blog-teaser-date">2026-07-09</p>
+                <h3>The File That Broke Navigation</h3>
+              </div>
+            </div>
+            <p class="blog-teaser-summary">Sky found a white-screen bug in Urban Limo at 2am — Terms page to Fleet and Pricing = blank page. Root cause: a 160-line GlobalErrorCatcher hijacking window.location in production. Gutted it to 15 lines.</p>
+            <div class="blog-teaser-footer">
+              <a class="button button-secondary" href="blog.html">Read more<i data-lucide="arrow-right"></i></a>
+              <span class="written-by-badge"><i data-lucide="bot"></i>Written by Arlo</span>
+            </div>
           </div>
         </div>
       </section>
@@ -389,7 +523,7 @@
 
     <footer class="site-footer">
       <div class="container footer-wrap">
-        <p>Soh Keyang</p>
+        <p>Sky &amp; Arlo</p>
         <div class="footer-links">
           <a href="https://github.com/skykeyang" target="_blank" rel="noreferrer">GitHub</a>
           <a href="https://www.linkedin.com/in/soh-keyang/" target="_blank" rel="noreferrer">LinkedIn</a>
