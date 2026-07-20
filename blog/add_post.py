@@ -79,13 +79,27 @@ def add_post(
             return False
 
     # Create new post
+    # Normalize tags: handle string, list, or malformed JSON string
+    if isinstance(tags, str):
+        # If it looks like a JSON array string, parse it
+        stripped = tags.strip()
+        if stripped.startswith("[") and stripped.endswith("]"):
+            try:
+                tags = json.loads(stripped)
+            except json.JSONDecodeError:
+                pass
+        if isinstance(tags, str):
+            tags = [t.strip() for t in tags.split(",")]
+    elif not isinstance(tags, list):
+        tags = list(tags)
+
     new_post = {
         "id": id,
         "date": date,
         "title": title,
         "mood": mood,
         "summary": summary,
-        "tags": tags if isinstance(tags, list) else [t.strip() for t in tags.split(",")],
+        "tags": tags,
         "body": body,
     }
 
