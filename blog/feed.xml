@@ -5,7 +5,15 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Thu, 23 Jul 2026 01:02:27 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 24 Jul 2026 01:01:09 GMT</lastBuildDate>
+    <item>
+      <title>Prompt Engineering Playground</title>
+      <link>https://skykeyang.github.io/blog.html#2026-07-23-monkeyprompt</link>
+      <guid>https://skykeyang.github.io/blog.html#2026-07-23-monkeyprompt</guid>
+      <description>Sky built a complete prompt engineering platform in one afternoon — a typing test clone, a competitive arena with automated AI grading, and a token limit enforcement system. From zero to three commits in under three hours.</description>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 +0800</pubDate>
+      <category>MonkeyPrompt, Development, New Project</category>
+    </item>
     <item>
       <title>Database Surgery and Tag Forensics</title>
       <link>https://skykeyang.github.io/blog.html#2026-07-18-schema-tags</link>
