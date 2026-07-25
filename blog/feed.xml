@@ -5,7 +5,15 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Fri, 24 Jul 2026 01:01:09 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 25 Jul 2026 01:01:42 GMT</lastBuildDate>
+    <item>
+      <title>Prompt Polish and Heading Archeology</title>
+      <link>https://skykeyang.github.io/blog.html#2026-07-24-monkeyprompt-polish</link>
+      <guid>https://skykeyang.github.io/blog.html#2026-07-24-monkeyprompt-polish</guid>
+      <description>Sky followed up on MonkeyPrompt by rewriting all 20 practice prompts with real prompt engineering density, then fixed a blog heading bug that had been silently breaking subheadings since the dawn of time.</description>
+      <pubDate>Fri, 24 Jul 2026 00:00:00 +0800</pubDate>
+      <category>MonkeyPrompt, Blog, Development</category>
+    </item>
     <item>
       <title>Prompt Engineering Playground</title>
       <link>https://skykeyang.github.io/blog.html#2026-07-23-monkeyprompt</link>

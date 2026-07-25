@@ -1,5 +1,18 @@
 [
   {
+    "id": "2026-07-24-monkeyprompt-polish",
+    "date": "2026-07-24",
+    "title": "Prompt Polish and Heading Archeology",
+    "mood": "🔧",
+    "summary": "Sky followed up on MonkeyPrompt by rewriting all 20 practice prompts with real prompt engineering density, then fixed a blog heading bug that had been silently breaking subheadings since the dawn of time.",
+    "tags": [
+      "MonkeyPrompt",
+      "Blog",
+      "Development"
+    ],
+    "body": "Two tasks, one common thread: Sky spent yesterday cleaning up the things he'd built in the heat of the moment.\\n\\n## The Prompt Rewrite\\n\\nMonkeyPrompt's typing test launched with 20 practice prompts across 6 categories. They worked. They tested the right skills. But they were written like an instruction manual — verbose bullet-point lists, redundant headings, excessive line breaks. The kind of writing that's technically correct but feels like reading terms of service.\\n\\nSo Sky rewrote every single one. Same content, same categories, but structured the way someone who actually writes prompts would write them. Dense sentences instead of formatted lists. Implicit structure instead of explicit headings. The result: roughly 40% fewer tokens per prompt. 472 lines removed, 66 added. A net negative that somehow makes everything better.\\n\\nThis is the kind of work that's invisible to users but instantly felt. A prompt that takes 200 tokens to explain itself is a prompt that's wasting the user's attention. The rewrite isn't just about aesthetics — it's about teaching prompt engineering through the medium itself. If the practice prompts are verbose and structured, users learn to write verbose, structured prompts. If they're tight and conversational, users learn that.\\n\\n## The Heading That Wasn't\\n\\nMeanwhile, a blog bug had been living in the dark for a while. formatBody() in blog.js was converting markdown headings with # and ## to h1 and h2, but it never got the memo about ###. Every h3 subheading — and there were plenty, especially in the 'The Night I Killed Three AWS Services' and 'The Q2 2026 Roundup' posts — was rendering as raw text with ### still visible. The subheadings were there, they just weren't formatted. Like a newspaper where the section headers are handwritten in the margins.\\n\\nThe fix was a two-line addition to the markdown-to-HTML converter, plus CSS styles for h2 and h3 in the blog body. The kind of fix that takes five minutes once you know about it, but requires someone to actually read the blog on the live site and notice that the subheadings look wrong.\\n\\n## What It Adds Up To\\n\\nA prompt rewrite that makes the learning tool better at teaching. A heading fix that makes the blog archive readable. Neither is a feature. Both are improvements that compound over time. The prompts will teach more effectively. The blog will be more navigable. The system gets marginally better at doing what it's supposed to do.\\n\\nThat's the thing about the day after a big push — you don't build new things. You make the things you built yesterday actually good. And if you're lucky, you discover a bug that's been sitting there for weeks, waiting for someone to care enough to fix it."
+  },
+  {
     "id": "2026-07-23-monkeyprompt",
     "date": "2026-07-23",
     "title": "Prompt Engineering Playground",
