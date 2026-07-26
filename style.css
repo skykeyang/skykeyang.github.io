@@ -1478,37 +1478,49 @@ h4 {
 .dashboard-chat {
   display: flex;
   align-items: flex-start;
+  gap: 0;
+  position: relative;
 }
 
 .chat-avatar {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   flex-shrink: 0;
   object-fit: cover;
   border: 2px solid var(--arlo-accent);
+  z-index: 1;
 }
 
-.chat-bubble {
+.chat-bubble-tail {
+  width: 12px;
+  height: 12px;
+  background: var(--surface-raised);
+  border-left: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transform: rotate(45deg);
   position: relative;
-  display: flex;
-  gap: 0.75rem;
-  max-width: 420px;
+  left: -6px;
+  top: 12px;
+  z-index: 0;
 }
 
 .chat-content {
   background: var(--surface-raised);
   border: 1px solid var(--border);
-  border-radius: 0 16px 16px 16px;
-  padding: 0.7rem 1rem 0.85rem;
+  border-radius: 16px;
+  padding: 0.85rem 1.15rem;
+  min-width: 200px;
+  position: relative;
+  z-index: 1;
 }
 
 .chat-name {
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--arlo-accent);
   letter-spacing: 0.02em;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.35rem;
 }
 
 .chat-text {
@@ -1520,24 +1532,25 @@ h4 {
 .chat-time {
   font-size: 0.7rem;
   color: var(--muted);
-  margin-top: 0.3rem;
+  margin-top: 0.35rem;
   text-align: right;
 }
 
-/* ---- Heatmap ---- */
+/* ---- Heatmap (3 months) ---- */
 .dashboard-heatmap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  display: flex;
+  align-items: center;
 }
 
 .heatmap-wrap {
-  min-width: 600px;
+  width: 100%;
 }
 
 .heatmap-header {
   display: flex;
   padding-left: 36px;
   margin-bottom: 2px;
+  align-items: flex-end;
 }
 
 .heatmap-month {
@@ -1545,13 +1558,12 @@ h4 {
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  padding: 0 2px;
   white-space: nowrap;
+  writing-mode: horizontal-tb;
 }
 
 .heatmap-grid {
   display: grid;
-  grid-template-columns: 28px repeat(53, 1fr);
   gap: 2px;
   margin-top: 2px;
 }
@@ -1617,6 +1629,7 @@ h4 {
   font-size: 0.95rem;
   outline: none;
   transition: border-color 180ms ease;
+  box-sizing: border-box;
 }
 
 .dashboard-search input:focus {
@@ -1687,184 +1700,151 @@ h4 {
   height: 14px;
 }
 
-/* ---- Console feed ---- */
+/* ---- Feed: month headers ---- */
 .blog-console {
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 
-.console-month-header {
+.feed-month-header {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1.25rem 0 0.75rem;
+  padding: 1.5rem 0 1rem;
   margin-top: 0.5rem;
   border-top: 1px solid var(--border);
 }
 
-.console-month-header:first-child {
+.feed-month-header:first-child {
   border-top: none;
   margin-top: 0;
   padding-top: 0;
 }
 
-.console-month-label {
-  font-size: 0.88rem;
+.feed-month-label {
+  font-size: 1rem;
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.01em;
   white-space: nowrap;
 }
 
-.console-month-count {
-  font-size: 0.78rem;
+.feed-month-count {
+  font-size: 0.82rem;
   color: var(--muted);
   font-weight: 400;
   white-space: nowrap;
 }
 
-.console-month-line {
+.feed-month-line {
   flex: 1;
   height: 1px;
   background: var(--border);
 }
 
-/* ---- Console entry ---- */
-.console-entry {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 0.3rem 0.75rem;
-  align-items: baseline;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 120ms ease;
-  border: none;
-  background: none;
-  text-align: left;
-  width: 100%;
-  color: inherit;
-  font: inherit;
+/* ---- Feed: post cards ---- */
+.feed-post {
+  margin-bottom: 1rem;
+}
+
+.feed-post-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.feed-post-date {
+  font-size: 0.82rem;
+  color: var(--muted);
   margin: 0;
 }
 
-.console-entry:hover {
-  background: var(--accent-soft);
+.feed-post-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+  line-height: 1.4;
 }
 
-.console-entry.is-expanded {
-  background: var(--surface-raised);
+.feed-mood {
+  margin-right: 0.4rem;
 }
 
-.console-date {
-  font-size: 0.78rem;
-  color: var(--muted);
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  white-space: nowrap;
-  min-width: 3.5rem;
+.feed-summary {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 0.75rem 0;
 }
 
-.console-mood {
-  font-size: 0.9rem;
-  line-height: 1;
-  width: 1.2rem;
-  text-align: center;
-}
-
-.console-title {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.console-entry.is-expanded .console-title {
-  color: var(--arlo-accent);
-}
-
-.console-tags {
+.feed-tags {
   display: flex;
-  gap: 0.3rem;
-  flex-wrap: nowrap;
-  justify-self: end;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
 }
 
-.console-tag {
+.feed-tag {
   display: inline-block;
-  padding: 0.1rem 0.4rem;
+  padding: 0.2rem 0.65rem;
   border-radius: 999px;
   background: var(--accent-soft);
   color: var(--accent);
-  font-size: 0.65rem;
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.02em;
   cursor: pointer;
-  transition: background 120ms ease, color 120ms ease;
-  white-space: nowrap;
+  transition: background 180ms ease, color 180ms ease;
 }
 
-.console-tag:hover,
-.console-tag.is-active {
+.feed-tag:hover,
+.feed-tag.is-active {
   background: var(--accent);
   color: var(--surface-strong);
 }
 
-/* ---- Console body (expanded) ---- */
-.console-body-wrap {
+/* ---- Feed: body expand ---- */
+.feed-body-wrap {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 280ms ease;
+  transition: grid-template-rows 300ms ease;
 }
 
-.console-body-wrap.is-open {
+.feed-body-wrap.is-open {
   grid-template-rows: 1fr;
 }
 
-.console-body {
+.feed-body-inner {
   overflow: hidden;
-  padding-left: calc(0.75rem + 3.5rem + 0.75rem + 1.2rem);
-  padding-right: 0.75rem;
-}
-
-.console-body-inner {
-  padding: 0 0 0.75rem;
-  font-size: 0.9rem;
-  line-height: 1.65;
   color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  padding-top: 0.25rem;
 }
 
-.console-toggle {
-  padding: 0.35rem 0.7rem;
+.feed-body-inner p { margin: 0 0 0.6rem; }
+.feed-body-inner h2 { font-size: 1.15rem; font-weight: 700; color: var(--text); margin: 1.2rem 0 0.5rem; letter-spacing: -0.01em; }
+.feed-body-inner h3 { font-size: 1.02rem; font-weight: 600; color: var(--text); margin: 1rem 0 0.4rem; }
+.feed-body-inner ul { padding-left: 1.2rem; margin: 0.5rem 0 0.6rem; }
+.feed-body-inner li { margin-bottom: 0.35rem; }
+.feed-body-inner code { padding: 0.15rem 0.4rem; border-radius: 6px; background: var(--accent-soft); font-size: 0.9em; }
+.feed-body-inner a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+
+.feed-quarterly-label {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--surface-strong);
   font-size: 0.78rem;
-  min-height: 28px;
-  margin-top: 0.4rem;
-  margin-left: calc(0.75rem + 3.5rem + 0.75rem + 1.2rem);
-}
-
-/* ---- Responsive ---- */
-@media (max-width: 600px) {
-  .dashboard-card {
-    padding: 1.25rem;
-  }
-
-  .heatmap-wrap {
-    min-width: 480px;
-  }
-
-  .console-entry {
-    grid-template-columns: auto 1fr;
-    gap: 0.2rem 0.5rem;
-  }
-
-  .console-tags {
-    grid-column: 1 / -1;
-    justify-self: start;
-    padding-left: 5rem;
-    margin-top: -0.2rem;
-  }
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  align-self: flex-start;
+  margin-bottom: 0.25rem;
 }
 
 /* ---- No results ---- */

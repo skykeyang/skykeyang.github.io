@@ -47,11 +47,6 @@
     return `${Math.floor(days / 30)}mo ago`;
   }
 
-  function getMonthYear(dateStr) {
-    const d = new Date(dateStr + "T00:00:00");
-    return d.toLocaleDateString("en-US", { month: "long", year: "numeric" });
-  }
-
   // ─── Fetch posts & status ───────────────────────────────
   let posts = [];
   try {
@@ -68,10 +63,8 @@
     return;
   }
 
-  // Sort newest first
   posts.sort((a, b) => b.date.localeCompare(a.date));
 
-  // Fetch status
   let statusText = "";
   try {
     const sr = await fetch("blog/status.json");
@@ -87,6 +80,7 @@
     const timeStr = now.toLocaleTimeString("en-SG", { hour: "2-digit", minute: "2-digit" });
     statusBubble.innerHTML = `
       <img src="img/arlo-avatar.jpg" alt="Arlo" class="chat-avatar" loading="lazy">
+      <div class="chat-bubble-tail"></div>
       <div class="chat-content">
         <div class="chat-name">Arlo</div>
         <div class="chat-text">${escapeHtml(statusText)}</div>
@@ -95,45 +89,41 @@
     `;
   }
 
-  // ─── Build heatmap ──────────────────────────────────────
+  // ─── Build heatmap (3 months) ───────────────────────────
   if (heatmapEl) {
-    // Map dates to post counts
     const countMap = {};
     posts.forEach(p => { countMap[p.date] = (countMap[p.date] || 0) + 1; });
 
-    // Build 53-week grid ending at today
     const today = new Date();
-    today.setHours(0,0,0,0);
+    today.setHours(0, 0, 0, 0);
 
-    // Find the Monday ~53 weeks ago
+    // Go back 3 months
     const start = new Date(today);
-    start.setDate(start.getDate() - 370); // a bit more than 53 weeks
-    // Roll back to Monday
-    const startDay = start.getDay(); // 0=Sun
-    const mondayOffset = startDay === 0 ? -6 : 1 - startDay;
-    start.setDate(start.getDate() + mondayOffset);
+    start.setMonth(start.getMonth() - 3);
+    // Roll to Monday of that week
+    const startDay = start.getDay();
+    const mondayOff = startDay === 0 ? -6 : 1 - startDay;
+    start.setDate(start.getDate() + mondayOff);
 
-    // Collect dates for each cell
-    const cells = [];
+    // Build weeks
     const weeks = [];
     let current = new Date(start);
+    const monthPositions = [];
+    let seenMonths = {};
+    let lastMonthLabel = -1;
 
-    // Month tracking for header
-    const monthLabels = [];
-    let lastMonth = -1;
-
-    for (let w = 0; w < 53; w++) {
+    for (let w = 0; w < 14; w++) {
       const week = [];
       for (let d = 0; d < 7; d++) {
         const dateStr = current.toISOString().slice(0, 10);
         const count = countMap[dateStr] || 0;
         const level = count === 0 ? 0 : count === 1 ? 2 : count <= 2 ? 3 : 4;
 
-        // Track month labels
         const m = current.getMonth();
-        if (m !== lastMonth && current <= today) {
-          monthLabels.push({ col: w, label: current.toLocaleDateString("en-US", { month: "short" }) });
-          lastMonth = m;
+        const monthKey = current.toISOString().slice(0, 7);
+        if (!seenMonths[monthKey] && current <= today) {
+          seenMonths[monthKey] = true;
+          monthPositions.push({ col: w, label: current.toLocaleDateString("en-US", { month: "short" }) });
         }
 
         if (current <= today) {
@@ -145,43 +135,23 @@
       weeks.push(week);
     }
 
-    // Determine month label positions (first col where each month appears)
-    const monthPositions = [];
-    let seenMonths = {};
-    for (let w = 0; w < weeks.length; w++) {
-      for (let d = 0; d < 7; d++) {
-        const cell = weeks[w][d];
-        if (!cell) continue;
-        const month = cell.date.slice(0, 7);
-        if (!seenMonths[month]) {
-          seenMonths[month] = true;
-          monthPositions.push({ col: w, label: new Date(cell.date + "T00:00:00").toLocaleDateString("en-US", { month: "short" }) });
-        }
-      }
-    }
-
-    // Build header with month labels
-    const headerWidth = monthPositions.length > 0
-      ? (monthPositions[1] ? (monthPositions[1].col - monthPositions[0].col) : 4) * 14
-      : 50;
-
     let html = '<div class="heatmap-wrap">';
+
+    // Month labels
     html += '<div class="heatmap-header">';
     html += '<div style="width:36px;flex-shrink:0"></div>';
-    let lastCol = -1;
     monthPositions.forEach(mp => {
-      const gap = (mp.col - lastCol - 1) * 14;
-      html += `<div class="heatmap-month" style="margin-left:${Math.max(0, gap)}px">${mp.label}</div>`;
-      lastCol = mp.col;
+      const offset = mp.col * 14;
+      html += `<div class="heatmap-month" style="margin-left:${offset}px">${mp.label}</div>`;
     });
     html += '</div>';
 
-    // Build grid
-    html += '<div class="heatmap-grid">';
+    // Grid
+    html += '<div class="heatmap-grid" style="grid-template-columns:36px repeat(' + weeks.length + ', 12px)">';
     const dayLabels = ['Mon', '', 'Wed', '', 'Fri', '', ''];
     for (let d = 0; d < 7; d++) {
       html += `<div class="heatmap-day-label">${dayLabels[d]}</div>`;
-      for (let w = 0; w < 53; w++) {
+      for (let w = 0; w < weeks.length; w++) {
         const cell = weeks[w] && weeks[w][d];
         if (cell) {
           const title = cell.count > 0 ? `${cell.count} post${cell.count > 1 ? 's' : ''} on ${cell.date}` : cell.date;
@@ -214,7 +184,6 @@
     }).length;
     const thisMonth = posts.filter(p => p.date && p.date.slice(0, 7) === new Date().toISOString().slice(0, 7)).length;
 
-    // Hot topic
     const tagCounts = {};
     posts.forEach(p => (p.tags || []).forEach(t => { tagCounts[t] = (tagCounts[t] || 0) + 1; }));
     const hotTopic = Object.entries(tagCounts).sort((a, b) => b[1] - a[1])[0];
@@ -230,7 +199,7 @@
     if (window.lucide) window.lucide.createIcons();
   }
 
-  // ─── Render console feed ────────────────────────────────
+  // ─── Render feed ─────────────────────────────────────────
   let filteredPosts = [...posts];
 
   function groupByMonth(postList) {
@@ -256,75 +225,54 @@
       const d = new Date(monthKey + "-01T00:00:00");
       const monthLabel = d.toLocaleDateString("en-US", { month: "long", year: "numeric" });
       const header = document.createElement("div");
-      header.className = "console-month-header";
+      header.className = "feed-month-header";
       header.innerHTML = `
-        <span class="console-month-label">${escapeHtml(monthLabel)}</span>
-        <span class="console-month-count">${monthPosts.length} post${monthPosts.length > 1 ? 's' : ''}</span>
-        <span class="console-month-line"></span>
+        <span class="feed-month-label">${escapeHtml(monthLabel)}</span>
+        <span class="feed-month-count">${monthPosts.length} post${monthPosts.length > 1 ? 's' : ''}</span>
+        <span class="feed-month-line"></span>
       `;
       feed.appendChild(header);
 
-      // Posts in this month
       monthPosts.forEach((p, idx) => {
-        const entry = document.createElement("button");
-        entry.className = "console-entry reveal";
-        entry.dataset.postId = p.id || idx;
-        entry.dataset.filterTags = (p.tags || []).join(",");
+        const card = document.createElement("article");
+        card.className = "content-card feed-post reveal";
+        card.dataset.postId = p.id || idx;
 
-        const moodHtml = p.mood ? escapeHtml(p.mood) : "";
-        const dateShort = p.date ? p.date.slice(5) : "";
-        const tagHtml = (p.tags || []).map(t =>
-          `<span class="console-tag" data-tag="${escapeHtml(t)}">${escapeHtml(t)}</span>`
-        ).join("");
+        const moodHtml = p.mood ? `<span class="feed-mood">${escapeHtml(p.mood)}</span>` : "";
+        const isQuarterly = (p.tags || []).includes("Quarterly");
+        const quarterlyLabel = isQuarterly
+          ? `<span class="feed-quarterly-label">&#x1f4ca; ${escapeHtml(p.title.match(/\d{4}\/Q\d/)?.[0] || "Quarterly")}</span>`
+          : "";
 
-        entry.innerHTML = `
-          <span class="console-date">${escapeHtml(dateShort)}</span>
-          <span class="console-mood">${moodHtml}</span>
-          <span class="console-title">${escapeHtml(p.title)}</span>
-          <span class="console-tags">${tagHtml}</span>
+        card.innerHTML = `
+          <div class="feed-post-header">
+            <p class="feed-post-date">${formatDate(p.date)}</p>
+            ${quarterlyLabel}
+            <h3>${moodHtml}${escapeHtml(p.title)}</h3>
+          </div>
+          <p class="feed-summary">${escapeHtml(p.summary || "")}</p>
+          <div class="feed-tags">${(p.tags || []).map(t => `<span class="feed-tag" data-tag="${escapeHtml(t)}">${escapeHtml(t)}</span>`).join("")}</div>
+          <div class="feed-body-wrap" id="body-${p.id || idx}"></div>
+          ${p.body ? `<button class="feed-toggle button button-secondary" data-target="body-${p.id || idx}" aria-expanded="false">Read more</button>` : ""}
         `;
 
-        // Expandable body
-        const bodyWrap = document.createElement("div");
-        bodyWrap.className = "console-body-wrap";
-        const bodyDiv = document.createElement("div");
-        bodyDiv.className = "console-body";
+        feed.appendChild(card);
 
-        if (p.summary) {
-          const summaryP = document.createElement("p");
-          summaryP.style.margin = "0 0 0.5rem";
-          summaryP.style.fontSize = "0.9rem";
-          summaryP.style.color = "var(--text-secondary)";
-          summaryP.textContent = p.summary;
-          bodyDiv.appendChild(summaryP);
-        }
-
+        // Body content
         if (p.body) {
-          const bodyInner = document.createElement("div");
-          bodyInner.className = "console-body-inner";
-          bodyInner.innerHTML = `<div>${formatBody(p.body)}</div>`;
+          const bodyWrap = card.querySelector(`#body-${p.id || idx}`);
+          bodyWrap.innerHTML = `<div class="feed-body-inner">${formatBody(p.body)}</div>`;
 
-          const toggle = document.createElement("button");
-          toggle.className = "button button-secondary console-toggle";
-          toggle.textContent = "Read more";
-          toggle.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const open = bodyWrap.classList.toggle("is-open");
-            toggle.textContent = open ? "Show less" : "Read more";
+          const toggle = card.querySelector(".feed-toggle");
+          toggle.addEventListener("click", () => {
+            const open = toggle.getAttribute("aria-expanded") === "true";
+            toggle.setAttribute("aria-expanded", String(!open));
+            toggle.textContent = open ? "Read more" : "Show less";
+            bodyWrap.classList.toggle("is-open", !open);
           });
-
-          bodyDiv.appendChild(bodyInner);
-          bodyWrap.appendChild(bodyDiv);
-          bodyWrap.appendChild(toggle);
-          entry.appendChild(bodyWrap);
-        } else {
-          bodyWrap.appendChild(bodyDiv);
-          entry.appendChild(bodyWrap);
         }
 
-        feed.appendChild(entry);
-
-        // IntersectionObserver for reveal
+        // Scroll reveal
         if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
           const obs = new IntersectionObserver(
             (entries) => {
@@ -332,11 +280,11 @@
                 if (e.isIntersecting) { e.target.classList.add("is-visible"); obs.unobserve(e.target); }
               });
             },
-            { threshold: 0.05, rootMargin: "0px 0px -16px 0px" }
+            { threshold: 0.1, rootMargin: "0px 0px -32px 0px" }
           );
-          obs.observe(entry);
+          obs.observe(card);
         } else {
-          entry.classList.add("is-visible");
+          card.classList.add("is-visible");
         }
       });
     });
@@ -349,68 +297,46 @@
     }
   }
 
-  // ─── Search filtering ──────────────────────────────────
+  // ─── Search ──────────────────────────────────────────────
   let searchQuery = "";
 
-  function applySearch() {
+  function applyFilter() {
     const q = searchQuery.toLowerCase().trim();
-    if (!q) {
-      filteredPosts = [...posts];
-    } else {
-      filteredPosts = posts.filter(p =>
+    const activeTags = [...document.querySelectorAll(".feed-tag.is-active")].map(el => el.dataset.tag);
+
+    let result = [...posts];
+
+    if (q) {
+      result = result.filter(p =>
         p.title.toLowerCase().includes(q) ||
         (p.summary || "").toLowerCase().includes(q) ||
         (p.body || "").toLowerCase().includes(q) ||
         (p.tags || []).some(t => t.toLowerCase().includes(q))
       );
     }
-    renderFeed(filteredPosts);
+
+    if (activeTags.length > 0) {
+      result = result.filter(p => (p.tags || []).some(t => activeTags.includes(t)));
+    }
+
+    renderFeed(result);
   }
 
   if (searchInput) {
     searchInput.addEventListener("input", (e) => {
       searchQuery = e.target.value;
-      applySearch();
+      applyFilter();
     });
   }
 
-  // ─── Tag filtering via click delegation ─────────────────
+  // ─── Tag click ───────────────────────────────────────────
   feed.addEventListener("click", (e) => {
-    const tag = e.target.closest(".console-tag");
+    const tag = e.target.closest(".feed-tag");
     if (!tag) return;
-    e.stopPropagation(); // don't trigger entry expand
-
-    const tagName = tag.dataset.tag;
     tag.classList.toggle("is-active");
-    const activeTags = [...feed.querySelectorAll(".console-tag.is-active")].map(el => el.dataset.tag);
-
-    if (activeTags.length === 0) {
-      filteredPosts = [...posts];
-    } else {
-      filteredPosts = posts.filter(p =>
-        (p.tags || []).some(t => activeTags.includes(t))
-      );
-    }
-
-    // Apply search filter on top of tag filter
-    applySearch();
+    applyFilter();
   });
 
-  // ─── Entry expand/collapse on click (not on tag) ───────
-  feed.addEventListener("click", (e) => {
-    const entry = e.target.closest(".console-entry");
-    if (!entry) return;
-    if (e.target.closest(".console-tag") || e.target.closest(".console-toggle")) return;
-
-    const bodyWrap = entry.querySelector(".console-body-wrap");
-    const toggle = entry.querySelector(".console-toggle");
-    if (!bodyWrap) return;
-
-    const isOpen = bodyWrap.classList.toggle("is-open");
-    entry.classList.toggle("is-expanded", isOpen);
-    if (toggle) toggle.textContent = isOpen ? "Show less" : "Read more";
-  });
-
-  // ─── Initial render ─────────────────────────────────────
+  // ─── Initial render ──────────────────────────────────────
   renderFeed(posts);
 })();
