@@ -1,3 +1,22 @@
+// Dynamic counters — fetch live data from posts.json
+(async function initDynamicCounts() {
+  try {
+    const res = await fetch('/blog/posts.json');
+    const posts = await res.json();
+    const count = Array.isArray(posts) ? posts.length : 0;
+    document.querySelectorAll('[data-dynamic="blog-count"]').forEach(el => {
+      el.textContent = count;
+      // Update data-target for stat counter animation
+      if (el.dataset.target !== undefined) {
+        el.dataset.target = String(count);
+      }
+    });
+  } catch (e) {
+    // Silently fall back to hardcoded defaults
+    console.warn('Dynamic count fetch failed, using static values', e);
+  }
+})();
+
 // Theme toggle (dark by default, optional light mode, persisted)
 const themeToggle = document.querySelector(".theme-toggle");
 const rootEl = document.documentElement;
