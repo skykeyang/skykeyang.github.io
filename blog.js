@@ -89,7 +89,7 @@
     `;
   }
 
-  // ─── Build heatmap (3 months) ───────────────────────────
+  // ─── Build heatmap (3 months, CSS grid with aligned labels) ─
   if (heatmapEl) {
     const countMap = {};
     posts.forEach(p => { countMap[p.date] = (countMap[p.date] || 0) + 1; });
@@ -97,20 +97,16 @@
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    // Go back 3 months
+    // Go back 3 months, roll to Monday
     const start = new Date(today);
     start.setMonth(start.getMonth() - 3);
-    // Roll to Monday of that week
     const startDay = start.getDay();
-    const mondayOff = startDay === 0 ? -6 : 1 - startDay;
-    start.setDate(start.getDate() + mondayOff);
+    start.setDate(start.getDate() + (startDay === 0 ? -6 : 1 - startDay));
 
-    // Build weeks
+    // Build weeks array + month ranges
     const weeks = [];
     let current = new Date(start);
-    const monthPositions = [];
-    let seenMonths = {};
-    let lastMonthLabel = -1;
+    const monthRanges = []; // { startWeek, span, label }
 
     for (let w = 0; w < 14; w++) {
       const week = [];
@@ -118,13 +114,6 @@
         const dateStr = current.toISOString().slice(0, 10);
         const count = countMap[dateStr] || 0;
         const level = count === 0 ? 0 : count === 1 ? 2 : count <= 2 ? 3 : 4;
-
-        const m = current.getMonth();
-        const monthKey = current.toISOString().slice(0, 7);
-        if (!seenMonths[monthKey] && current <= today) {
-          seenMonths[monthKey] = true;
-          monthPositions.push({ col: w, label: current.toLocaleDateString("en-US", { month: "short" }) });
-        }
 
         if (current <= today) {
           week.push({ date: dateStr, count, level });
@@ -135,28 +124,58 @@
       weeks.push(week);
     }
 
-    let html = '<div class="heatmap-wrap">';
-
-    // Month labels
-    html += '<div class="heatmap-header">';
-    html += '<div style="width:36px;flex-shrink:0"></div>';
-    monthPositions.forEach(mp => {
-      const offset = mp.col * 14;
-      html += `<div class="heatmap-month" style="margin-left:${offset}px">${mp.label}</div>`;
+    // Calculate month ranges (first week each month appears, and span in weeks)
+    // Count how many weeks per month starting from the first week
+    let mRanges = {};
+    weeks.forEach((wk, wi) => {
+      wk.forEach(cell => {
+        if (!cell) return;
+        const m = cell.date.slice(0, 7);
+        if (!mRanges[m]) {
+          mRanges[m] = { start: wi, end: wi };
+        } else {
+          mRanges[m].end = wi;
+        }
+      });
     });
-    html += '</div>';
 
-    // Grid
-    html += '<div class="heatmap-grid" style="grid-template-columns:36px repeat(' + weeks.length + ', 12px)">';
+    Object.entries(mRanges).forEach(([key, r]) => {
+      const d = new Date(key + "-01T00:00:00");
+      monthRanges.push({
+        label: d.toLocaleDateString("en-US", { month: "short" }),
+        startWeek: r.start,
+        span: r.end - r.start + 1
+      });
+    });
+
+    const numWeeks = weeks.length;
+
+    // Single grid for everything: month labels row + 7 data rows
+    let html = '<div class="heatmap-grid" style="grid-template-columns:36px repeat(' + numWeeks + ', 12px); gap:2px">';
+
+    // Row 0: month labels
+    html += '<div style="height:14px"></div>'; // empty corner
+    monthRanges.forEach(mr => {
+      const colSpan = mr.span > 0 ? mr.span : 1;
+      html += `<div class="heatmap-month" style="grid-column:span ${colSpan}; height:14px; line-height:14px">${mr.label}</div>`;
+    });
+    // Fill rest of row if months don't cover all weeks
+    const totalSpanned = monthRanges.reduce((s, m) => s + m.span, 0);
+    for (let i = totalSpanned; i < numWeeks; i++) {
+      html += '<div style="height:14px"></div>';
+    }
+
+    // Rows 1-7: day labels + data
     const dayLabels = ['Mon', '', 'Wed', '', 'Fri', '', ''];
     for (let d = 0; d < 7; d++) {
       html += `<div class="heatmap-day-label">${dayLabels[d]}</div>`;
-      for (let w = 0; w < weeks.length; w++) {
+      for (let w = 0; w < numWeeks; w++) {
         const cell = weeks[w] && weeks[w][d];
         if (cell) {
           const title = cell.count > 0 ? `${cell.count} post${cell.count > 1 ? 's' : ''} on ${cell.date}` : cell.date;
           html += `<div class="heatmap-cell level-${cell.level}" title="${escapeHtml(title)}"></div>`;
         } else {
+          // Empty spacer cell (dates before first post or after today)
           html += '<div style="width:12px;height:12px"></div>';
         }
       }
@@ -168,7 +187,7 @@
     for (let i = 0; i <= 4; i++) {
       html += `<div class="heatmap-cell level-${i}"></div>`;
     }
-    html += '<span>More</span></div></div>';
+    html += '<span>More</span></div>';
 
     heatmapEl.innerHTML = html;
   }
