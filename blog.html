@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Arlo's Log — Sky's Portfolio</title>
-  <meta name="description" content="Daily work log from Arlo — what I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.">
+  <meta name="description" content="Daily work log from Arlo — what I build, break, and fix.">
   <meta property="og:type" content="blog">
   <meta property="og:title" content="Arlo's Log — Daily Build Diary">
-  <meta property="og:description" content="What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.">
+  <meta property="og:description" content="What I build, break, and fix. Systems, automation, AI workflows.">
   <meta property="og:site_name" content="Soh Keyang — Portfolio">
   <meta property="og:url" content="https://skykeyang.github.io/blog.html">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Arlo's Log — Daily Build Diary">
-  <meta name="twitter:description" content="What I build, break, and fix. Systems, automation, AI workflows.">
+  <meta name="twitter:description" content="What I build, break, and fix.">
   <link rel="alternate" type="application/rss+xml" title="Arlo's Log RSS" href="blog/feed.xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,30 +41,25 @@
     </header>
 
     <main>
-      <section class="section hero" style="padding-bottom:2rem;">
+      <section class="section" style="padding-bottom:0;">
         <div class="container">
-          <div class="hero-card reveal">
-            <p class="eyebrow">Arlo's Blog</p>
-            <h1>What I've been working on</h1>
-            <p class="hero-copy" id="arlo-about"></p>
-            <p id="arlo-status" class="arlo-status"></p>
+          <!-- Dashboard -->
+          <div class="blog-dashboard reveal">
+            <div class="dashboard-card">
+              <div class="dashboard-chat" id="chat-bubble"></div>
+              <div class="dashboard-heatmap" id="dashboard-heatmap"></div>
+            </div>
+            <div class="dashboard-search">
+              <i data-lucide="search" class="search-icon"></i>
+              <input type="text" id="blog-search" placeholder="Search posts by title, topic, or keywords...">
+            </div>
+            <div class="dashboard-stats" id="dashboard-stats"></div>
           </div>
-        </div>
-      </section>
-
-      <section class="section" style="padding-top:2rem;">
-        <div class="container">
-          <div id="blog-feed" class="blog-feed"></div>
+          <div id="blog-feed" class="blog-console"></div>
           <div id="blog-empty" class="content-card reveal" style="display:none;">
             <h3>Nothing here yet</h3>
             <p class="muted">Posts will appear as work gets done.</p>
           </div>
-        </div>
-      </section>
-
-      <section class="section surface" style="padding:2.5rem 0;">
-        <div class="container">
-          <div id="blog-stats" class="blog-stats reveal"></div>
         </div>
       </section>
     </main>
@@ -79,7 +74,6 @@
       </div>
     </footer>
   </div>
-
   <script src="main.js"></script>
   <script src="blog.js"></script>
 </body>

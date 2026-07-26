@@ -1448,3 +1448,429 @@ h4 {
   transition: background 300ms ease, border-color 300ms ease, box-shadow 300ms ease,
     transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* ==========================================================================
+   Blog Dashboard Redesign — July 2026
+   ========================================================================== */
+
+/* ---- Dashboard container ---- */
+.blog-dashboard {
+  margin-bottom: 2rem;
+}
+
+.dashboard-card {
+  display: grid;
+  gap: 1.5rem;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 800px) {
+  .dashboard-card {
+    grid-template-columns: 1fr 1.2fr;
+  }
+}
+
+/* ---- Chat bubble ---- */
+.dashboard-chat {
+  display: flex;
+  align-items: flex-start;
+}
+
+.chat-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+  border: 2px solid var(--arlo-accent);
+}
+
+.chat-bubble {
+  position: relative;
+  display: flex;
+  gap: 0.75rem;
+  max-width: 420px;
+}
+
+.chat-content {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 0 16px 16px 16px;
+  padding: 0.7rem 1rem 0.85rem;
+}
+
+.chat-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--arlo-accent);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.2rem;
+}
+
+.chat-text {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.chat-time {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+  text-align: right;
+}
+
+/* ---- Heatmap ---- */
+.dashboard-heatmap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.heatmap-wrap {
+  min-width: 600px;
+}
+
+.heatmap-header {
+  display: flex;
+  padding-left: 36px;
+  margin-bottom: 2px;
+}
+
+.heatmap-month {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0 2px;
+  white-space: nowrap;
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: 28px repeat(53, 1fr);
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.heatmap-day-label {
+  display: flex;
+  align-items: center;
+  font-size: 0.68rem;
+  color: var(--muted);
+  padding-right: 4px;
+  justify-content: flex-end;
+  height: 12px;
+}
+
+.heatmap-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: var(--surface);
+  transition: background 120ms ease;
+  cursor: default;
+}
+
+.heatmap-cell:hover {
+  outline: 2px solid var(--text);
+  outline-offset: -1px;
+}
+
+.heatmap-cell.level-1 { background: color-mix(in srgb, var(--accent) 25%, var(--surface)); }
+.heatmap-cell.level-2 { background: color-mix(in srgb, var(--accent) 50%, var(--surface)); }
+.heatmap-cell.level-3 { background: color-mix(in srgb, var(--accent) 75%, var(--surface)); }
+.heatmap-cell.level-4 { background: var(--accent); }
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  justify-content: flex-end;
+  margin-top: 4px;
+  padding-left: 36px;
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+.heatmap-legend .heatmap-cell {
+  width: 10px;
+  height: 10px;
+}
+
+/* ---- Search bar ---- */
+.dashboard-search {
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+
+.dashboard-search input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 180ms ease;
+}
+
+.dashboard-search input:focus {
+  border-color: var(--arlo-accent);
+}
+
+.dashboard-search input::placeholder {
+  color: var(--muted);
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+/* ---- Stats bar ---- */
+.dashboard-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.dashboard-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.dashboard-stat-value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.dashboard-stat-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.dashboard-stat-divider {
+  width: 1px;
+  height: 2.2rem;
+  background: var(--border);
+}
+
+.dashboard-hot-topic {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--arlo-accent);
+  font-weight: 600;
+}
+
+.dashboard-hot-topic i {
+  width: 14px;
+  height: 14px;
+}
+
+/* ---- Console feed ---- */
+.blog-console {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.console-month-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 0 0.75rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.console-month-header:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.console-month-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.console-month-count {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.console-month-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ---- Console entry ---- */
+.console-entry {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.3rem 0.75rem;
+  align-items: baseline;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 120ms ease;
+  border: none;
+  background: none;
+  text-align: left;
+  width: 100%;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.console-entry:hover {
+  background: var(--accent-soft);
+}
+
+.console-entry.is-expanded {
+  background: var(--surface-raised);
+}
+
+.console-date {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  white-space: nowrap;
+  min-width: 3.5rem;
+}
+
+.console-mood {
+  font-size: 0.9rem;
+  line-height: 1;
+  width: 1.2rem;
+  text-align: center;
+}
+
+.console-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.console-entry.is-expanded .console-title {
+  color: var(--arlo-accent);
+}
+
+.console-tags {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: nowrap;
+  justify-self: end;
+}
+
+.console-tag {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+  white-space: nowrap;
+}
+
+.console-tag:hover,
+.console-tag.is-active {
+  background: var(--accent);
+  color: var(--surface-strong);
+}
+
+/* ---- Console body (expanded) ---- */
+.console-body-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 280ms ease;
+}
+
+.console-body-wrap.is-open {
+  grid-template-rows: 1fr;
+}
+
+.console-body {
+  overflow: hidden;
+  padding-left: calc(0.75rem + 3.5rem + 0.75rem + 1.2rem);
+  padding-right: 0.75rem;
+}
+
+.console-body-inner {
+  padding: 0 0 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.console-toggle {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.78rem;
+  min-height: 28px;
+  margin-top: 0.4rem;
+  margin-left: calc(0.75rem + 3.5rem + 0.75rem + 1.2rem);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .dashboard-card {
+    padding: 1.25rem;
+  }
+
+  .heatmap-wrap {
+    min-width: 480px;
+  }
+
+  .console-entry {
+    grid-template-columns: auto 1fr;
+    gap: 0.2rem 0.5rem;
+  }
+
+  .console-tags {
+    grid-column: 1 / -1;
+    justify-self: start;
+    padding-left: 5rem;
+    margin-top: -0.2rem;
+  }
+}
+
+/* ---- No results ---- */
+.search-no-results {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
