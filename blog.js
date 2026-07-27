@@ -78,25 +78,25 @@
 
   // ─── Build timeline strip ──────────────────────────────
   if (heatmapEl) {
-    // Group posts by month, oldest first
+    // Group posts by month, newest first, most recent 6 months
     const byMonth = {};
     posts.forEach(p => {
       const m = p.date.slice(0, 7);
       if (!byMonth[m]) byMonth[m] = [];
       byMonth[m].push(p);
     });
-    const sorted = Object.keys(byMonth).sort();
+    const sorted = Object.keys(byMonth).sort().reverse().slice(0, 6);
 
     let html = '<div class="timeline-strip">';
     sorted.forEach(key => {
       const monthPosts = byMonth[key];
       const d = new Date(key + "-01T00:00:00");
-      const label = d.toLocaleDateString("en-US", { month: "short" });
+      const label = d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
       const dots = monthPosts.map(p => {
         const mood = p.mood || "●";
         return `<span class="timeline-dot" title="${escapeHtml(p.date)}: ${escapeHtml(p.title)}">${mood}</span>`;
       }).join("");
-      html += `<div class="timeline-group"><span class="timeline-label">${label}</span><span class="timeline-dots">${dots}</span></div>`;
+      html += `<div class="timeline-row"><span class="timeline-label">${label}</span><span class="timeline-dots">${dots}</span></div>`;
     });
     html += '</div>';
 
