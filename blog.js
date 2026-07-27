@@ -35,18 +35,6 @@
       .replace(/\n/g, "<br>");
   }
 
-  function timeAgo(dateStr) {
-    const now = new Date();
-    const d = new Date(dateStr + "T00:00:00");
-    const diff = now - d;
-    const hours = Math.floor(diff / 3600000);
-    if (hours < 1) return "just now";
-    if (hours < 24) return `${hours}h ago`;
-    const days = Math.floor(hours / 24);
-    if (days < 30) return `${days}d ago`;
-    return `${Math.floor(days / 30)}mo ago`;
-  }
-
   // ─── Fetch posts & status ───────────────────────────────
   let posts = [];
   try {
@@ -89,7 +77,7 @@
     `;
   }
 
-  // ─── Build heatmap (3 months, CSS grid with aligned labels) ─
+  // ─── Build heatmap ──────────────────────────────────────
   if (heatmapEl) {
     const countMap = {};
     posts.forEach(p => { countMap[p.date] = (countMap[p.date] || 0) + 1; });
@@ -97,24 +85,23 @@
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    // Go back 3 months, roll to Monday
-    const start = new Date(today);
-    start.setMonth(start.getMonth() - 3);
-    const startDay = start.getDay();
-    start.setDate(start.getDate() + (startDay === 0 ? -6 : 1 - startDay));
+    // Start from the 1st of the month, 3 months ago → clean month boundary
+    const startMonth = today.getMonth() - 3;
+    const startYear = today.getFullYear() + (startMonth < 0 ? -1 : 0);
+    const monthStart = new Date(startYear, (startMonth + 12) % 12, 1);
+    // Roll to the Monday of that week (or before)
+    const sd = monthStart.getDay();
+    monthStart.setDate(monthStart.getDate() - (sd === 0 ? 6 : sd - 1));
 
-    // Build weeks array + month ranges
+    // Build weeks. Each week = 7 cells (one per day), empty for future dates.
     const weeks = [];
-    let current = new Date(start);
-    const monthRanges = []; // { startWeek, span, label }
-
+    let current = new Date(monthStart);
     for (let w = 0; w < 14; w++) {
       const week = [];
       for (let d = 0; d < 7; d++) {
         const dateStr = current.toISOString().slice(0, 10);
         const count = countMap[dateStr] || 0;
         const level = count === 0 ? 0 : count === 1 ? 2 : count <= 2 ? 3 : 4;
-
         if (current <= today) {
           week.push({ date: dateStr, count, level });
         }
@@ -124,58 +111,51 @@
       weeks.push(week);
     }
 
-    // Calculate month ranges (first week each month appears, and span in weeks)
-    // Count how many weeks per month starting from the first week
-    let mRanges = {};
+    // Determine which weeks contain which months
+    const monthInfo = {};
     weeks.forEach((wk, wi) => {
       wk.forEach(cell => {
         if (!cell) return;
         const m = cell.date.slice(0, 7);
-        if (!mRanges[m]) {
-          mRanges[m] = { start: wi, end: wi };
+        if (!monthInfo[m]) {
+          monthInfo[m] = { firstWeek: wi, lastWeek: wi };
         } else {
-          mRanges[m].end = wi;
+          monthInfo[m].lastWeek = wi;
         }
       });
     });
 
-    Object.entries(mRanges).forEach(([key, r]) => {
+    // Build month labels in chronological order, with explicit grid columns
+    const monthKeys = Object.keys(monthInfo).sort();
+    // Count total columns: 1 (day-label) + weeks.length (data)
+    const totalCols = 1 + weeks.length;
+
+    // Build the grid HTML
+    // Row 0: month labels, each placed at the exact column where its first week starts
+    let html = '<div class="heatmap-grid" style="grid-template-columns:36px repeat(' + weeks.length + ', 12px); gap:2px">';
+
+    html += '<div style="height:14px;grid-column:1">'; // above day labels
+    monthKeys.forEach(key => {
+      const info = monthInfo[key];
       const d = new Date(key + "-01T00:00:00");
-      monthRanges.push({
-        label: d.toLocaleDateString("en-US", { month: "short" }),
-        startWeek: r.start,
-        span: r.end - r.start + 1
-      });
+      const label = d.toLocaleDateString("en-US", { month: "short" });
+      const span = info.lastWeek - info.firstWeek + 1;
+      // grid-column: 1-based index. Column 1 = day-label spacer. Data starts at column 2.
+      const startCol = info.firstWeek + 2;
+      html += `<div class="heatmap-month" style="grid-column:${startCol} / span ${span}; height:14px; line-height:14px">${label}</div>`;
     });
+    html += '</div>';
 
-    const numWeeks = weeks.length;
-
-    // Single grid for everything: month labels row + 7 data rows
-    let html = '<div class="heatmap-grid" style="grid-template-columns:36px repeat(' + numWeeks + ', 12px); gap:2px">';
-
-    // Row 0: month labels
-    html += '<div style="height:14px"></div>'; // empty corner
-    monthRanges.forEach(mr => {
-      const colSpan = mr.span > 0 ? mr.span : 1;
-      html += `<div class="heatmap-month" style="grid-column:span ${colSpan}; height:14px; line-height:14px">${mr.label}</div>`;
-    });
-    // Fill rest of row if months don't cover all weeks
-    const totalSpanned = monthRanges.reduce((s, m) => s + m.span, 0);
-    for (let i = totalSpanned; i < numWeeks; i++) {
-      html += '<div style="height:14px"></div>';
-    }
-
-    // Rows 1-7: day labels + data
+    // Rows 1-7: day labels + data cells
     const dayLabels = ['Mon', '', 'Wed', '', 'Fri', '', ''];
     for (let d = 0; d < 7; d++) {
-      html += `<div class="heatmap-day-label">${dayLabels[d]}</div>`;
-      for (let w = 0; w < numWeeks; w++) {
+      html += `<div class="heatmap-day-label" style="grid-column:1">${dayLabels[d]}</div>`;
+      for (let w = 0; w < weeks.length; w++) {
         const cell = weeks[w] && weeks[w][d];
         if (cell) {
           const title = cell.count > 0 ? `${cell.count} post${cell.count > 1 ? 's' : ''} on ${cell.date}` : cell.date;
           html += `<div class="heatmap-cell level-${cell.level}" title="${escapeHtml(title)}"></div>`;
         } else {
-          // Empty spacer cell (dates before first post or after today)
           html += '<div style="width:12px;height:12px"></div>';
         }
       }
@@ -240,7 +220,6 @@
       if (!monthPosts.length) return;
       hadResults = true;
 
-      // Month header
       const d = new Date(monthKey + "-01T00:00:00");
       const monthLabel = d.toLocaleDateString("en-US", { month: "long", year: "numeric" });
       const header = document.createElement("div");
@@ -277,7 +256,6 @@
 
         feed.appendChild(card);
 
-        // Body content
         if (p.body) {
           const bodyWrap = card.querySelector(`#body-${p.id || idx}`);
           bodyWrap.innerHTML = `<div class="feed-body-inner">${formatBody(p.body)}</div>`;
@@ -291,7 +269,6 @@
           });
         }
 
-        // Scroll reveal
         if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
           const obs = new IntersectionObserver(
             (entries) => {
