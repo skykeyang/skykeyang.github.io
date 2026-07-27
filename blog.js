@@ -77,97 +77,29 @@
     `;
   }
 
-  // ─── Build heatmap ──────────────────────────────────────
+  // ─── Build timeline strip ──────────────────────────────
   if (heatmapEl) {
-    const countMap = {};
-    posts.forEach(p => { countMap[p.date] = (countMap[p.date] || 0) + 1; });
-
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    // Start from the 1st of the month, 3 months ago → clean month boundary
-    const startMonth = today.getMonth() - 3;
-    const startYear = today.getFullYear() + (startMonth < 0 ? -1 : 0);
-    const monthStart = new Date(startYear, (startMonth + 12) % 12, 1);
-    // Roll to the Monday of that week (or before)
-    const sd = monthStart.getDay();
-    monthStart.setDate(monthStart.getDate() - (sd === 0 ? 6 : sd - 1));
-
-    // Build weeks. Each week = 7 cells (one per day), empty for future dates.
-    const weeks = [];
-    let current = new Date(monthStart);
-    for (let w = 0; w < 14; w++) {
-      const week = [];
-      for (let d = 0; d < 7; d++) {
-        const dateStr = current.toISOString().slice(0, 10);
-        const count = countMap[dateStr] || 0;
-        const level = count === 0 ? 0 : count === 1 ? 2 : count <= 2 ? 3 : 4;
-        if (current <= today) {
-          week.push({ date: dateStr, count, level });
-        }
-        current = new Date(current);
-        current.setDate(current.getDate() + 1);
-      }
-      weeks.push(week);
-    }
-
-    // Determine which weeks contain which months
-    const monthInfo = {};
-    weeks.forEach((wk, wi) => {
-      wk.forEach(cell => {
-        if (!cell) return;
-        const m = cell.date.slice(0, 7);
-        if (!monthInfo[m]) {
-          monthInfo[m] = { firstWeek: wi, lastWeek: wi };
-        } else {
-          monthInfo[m].lastWeek = wi;
-        }
-      });
+    // Group posts by month, oldest first
+    const byMonth = {};
+    posts.forEach(p => {
+      const m = p.date.slice(0, 7);
+      if (!byMonth[m]) byMonth[m] = [];
+      byMonth[m].push(p);
     });
+    const sorted = Object.keys(byMonth).sort();
 
-    // Build month labels in chronological order, with explicit grid columns
-    const monthKeys = Object.keys(monthInfo).sort();
-    // Count total columns: 1 (day-label) + weeks.length (data)
-    const totalCols = 1 + weeks.length;
-
-    // Build the grid HTML
-    // Row 0: month labels, each placed at the exact column where its first week starts
-    let html = '<div class="heatmap-grid" style="grid-template-columns:36px repeat(' + weeks.length + ', 12px); gap:2px">';
-
-    html += '<div style="height:14px;grid-column:1">'; // above day labels
-    monthKeys.forEach(key => {
-      const info = monthInfo[key];
+    let html = '<div class="timeline-strip">';
+    sorted.forEach(key => {
+      const monthPosts = byMonth[key];
       const d = new Date(key + "-01T00:00:00");
       const label = d.toLocaleDateString("en-US", { month: "short" });
-      const span = info.lastWeek - info.firstWeek + 1;
-      // grid-column: 1-based index. Column 1 = day-label spacer. Data starts at column 2.
-      const startCol = info.firstWeek + 2;
-      html += `<div class="heatmap-month" style="grid-column:${startCol} / span ${span}; height:14px; line-height:14px">${label}</div>`;
+      const dots = monthPosts.map(p => {
+        const mood = p.mood || "●";
+        return `<span class="timeline-dot" title="${escapeHtml(p.date)}: ${escapeHtml(p.title)}">${mood}</span>`;
+      }).join("");
+      html += `<div class="timeline-group"><span class="timeline-label">${label}</span><span class="timeline-dots">${dots}</span></div>`;
     });
     html += '</div>';
-
-    // Rows 1-7: day labels + data cells
-    const dayLabels = ['Mon', '', 'Wed', '', 'Fri', '', ''];
-    for (let d = 0; d < 7; d++) {
-      html += `<div class="heatmap-day-label" style="grid-column:1">${dayLabels[d]}</div>`;
-      for (let w = 0; w < weeks.length; w++) {
-        const cell = weeks[w] && weeks[w][d];
-        if (cell) {
-          const title = cell.count > 0 ? `${cell.count} post${cell.count > 1 ? 's' : ''} on ${cell.date}` : cell.date;
-          html += `<div class="heatmap-cell level-${cell.level}" title="${escapeHtml(title)}"></div>`;
-        } else {
-          html += '<div style="width:12px;height:12px"></div>';
-        }
-      }
-    }
-    html += '</div>';
-
-    // Legend
-    html += '<div class="heatmap-legend"><span>Less</span>';
-    for (let i = 0; i <= 4; i++) {
-      html += `<div class="heatmap-cell level-${i}"></div>`;
-    }
-    html += '<span>More</span></div>';
 
     heatmapEl.innerHTML = html;
   }

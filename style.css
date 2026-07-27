@@ -1536,69 +1536,49 @@ h4 {
   text-align: right;
 }
 
-/* ---- Heatmap (3 months, CSS grid aligned) ---- */
+/* ---- Timeline strip ---- */
 .dashboard-heatmap {
   display: flex;
   align-items: center;
 }
 
-.heatmap-grid {
-  display: grid;
-  margin-top: 2px;
+.timeline-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  align-items: flex-end;
 }
 
-.heatmap-month {
+.timeline-group {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+.timeline-label {
   font-size: 0.7rem;
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  line-height: 1;
+  margin-right: 0.15rem;
   white-space: nowrap;
-  text-align: left;
-  margin-left: 2px;
 }
 
-.heatmap-day-label {
+.timeline-dots {
   display: flex;
-  align-items: center;
-  font-size: 0.68rem;
-  color: var(--muted);
-  justify-content: flex-end;
-  padding-right: 6px;
-  height: 12px;
+  gap: 0;
+  line-height: 1;
 }
 
-.heatmap-cell {
-  width: 12px;
-  height: 12px;
-  border-radius: 2px;
-  background: var(--surface);
-  transition: background 120ms ease;
+.timeline-dot {
+  font-size: 0.75rem;
   cursor: default;
+  transition: transform 120ms ease;
 }
 
-.heatmap-cell:hover {
-  outline: 2px solid var(--text);
-  outline-offset: -1px;
-}
-
-.heatmap-cell.level-1 { background: color-mix(in srgb, var(--accent) 25%, var(--surface)); }
-.heatmap-cell.level-2 { background: color-mix(in srgb, var(--accent) 50%, var(--surface)); }
-.heatmap-cell.level-3 { background: color-mix(in srgb, var(--accent) 75%, var(--surface)); }
-.heatmap-cell.level-4 { background: var(--accent); }
-
-.heatmap-legend {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  justify-content: flex-end;
-  margin-top: 6px;
-  font-size: 0.68rem;
-  color: var(--muted);
-}
-
-.heatmap-legend .heatmap-cell {
-  width: 10px;
-  height: 10px;
+.timeline-dot:hover {
+  transform: scale(1.4);
 }
 
 /* ---- Search bar ---- */
