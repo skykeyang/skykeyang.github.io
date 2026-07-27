@@ -68,7 +68,6 @@
     const timeStr = now.toLocaleTimeString("en-SG", { hour: "2-digit", minute: "2-digit" });
     statusBubble.innerHTML = `
       <img src="img/arlo-avatar.jpg" alt="Arlo" class="chat-avatar" loading="lazy">
-      <div class="chat-bubble-tail"></div>
       <div class="chat-content">
         <div class="chat-name">Arlo</div>
         <div class="chat-text">${escapeHtml(statusText)}</div>
