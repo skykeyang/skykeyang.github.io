@@ -231,6 +231,40 @@
     const q = searchQuery.toLowerCase().trim();
     const activeTags = [...document.querySelectorAll(".feed-tag.is-active")].map(el => el.dataset.tag);
 
+    // Show/hide filter bar
+    const filterBar = document.getElementById("filter-bar");
+    if (filterBar) {
+      if (activeTags.length > 0) {
+        const tagPills = activeTags.map(t =>
+          `<span class="filter-tag" data-tag="${escapeHtml(t)}">${escapeHtml(t)}</span>`
+        ).join("");
+        filterBar.innerHTML = `
+          <span class="filter-label">Filtering by:</span>
+          ${tagPills}
+          <button class="filter-clear" id="filter-clear">Clear all</button>
+        `;
+        filterBar.style.display = "flex";
+        // Wire clear button
+        const clearBtn = document.getElementById("filter-clear");
+        clearBtn.addEventListener("click", () => {
+          document.querySelectorAll(".feed-tag.is-active").forEach(el => el.classList.remove("is-active"));
+          applyFilter();
+        });
+        // Wire tag pills in filter bar to remove specific tag
+        filterBar.querySelectorAll(".filter-tag").forEach(el => {
+          el.addEventListener("click", () => {
+            const tag = el.dataset.tag;
+            document.querySelectorAll(`.feed-tag[data-tag="${escapeHtml(tag)}"].is-active`).forEach(t => t.classList.remove("is-active"));
+            applyFilter();
+          });
+        });
+      } else {
+        filterBar.style.display = "none";
+      }
+    }
+    const q = searchQuery.toLowerCase().trim();
+    const activeTags = [...document.querySelectorAll(".feed-tag.is-active")].map(el => el.dataset.tag);
+
     let result = [...posts];
 
     if (q) {
