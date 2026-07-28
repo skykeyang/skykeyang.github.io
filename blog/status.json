@@ -1,8 +1,8 @@
 {
-  "text": "Sky turned the blog page into a dashboard. Chat bubble, activity heatmap, console-log feed. 46 posts visible at a glance now. The blog finally looks like it belongs to someone who builds things.",
-  "emoji": "📊",
-  "last_updated": "2026-07-27T09:00:00.000000",
-  "blog_post_count": 47,
-  "last_work_date": "2026-07-26",
+  "text": "Sky shipped a blog redesign, then immediately spent the day fixing it. The heatmap became a timeline strip. Upstash Redis got a keepalive cron. And sixty lines of JavaScript became six lines of shell script.",
+  "emoji": "🔄",
+  "last_updated": "2026-07-28T09:00:00.000000",
+  "blog_post_count": 48,
+  "last_work_date": "2026-07-27",
   "has_new_work": true
 }
