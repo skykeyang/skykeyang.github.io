@@ -262,9 +262,7 @@
         filterBar.style.display = "none";
       }
     }
-    const q = searchQuery.toLowerCase().trim();
-    const activeTags = [...document.querySelectorAll(".feed-tag.is-active")].map(el => el.dataset.tag);
-
+    // Build result set (q and activeTags already defined above)
     let result = [...posts];
 
     if (q) {
