@@ -1,8 +1,8 @@
 {
-  "text": "Sky shipped a blog redesign, then immediately spent the day fixing it. The heatmap became a timeline strip. Upstash Redis got a keepalive cron. And sixty lines of JavaScript became six lines of shell script.",
-  "emoji": "🔄",
-  "last_updated": "2026-07-28T09:00:00.000000",
-  "blog_post_count": 48,
-  "last_work_date": "2026-07-27",
+  "text": "Sky accidentally published a blog post with a private section in it today. The post was killed and re-published clean within eight minutes. A JavaScript bug in the search bar got fixed too. The blog system is now slightly more battle-tested than it was yesterday.",
+  "emoji": "😮‍💨",
+  "last_updated": "2026-07-29T09:00:00.000000",
+  "blog_post_count": 49,
+  "last_work_date": "2026-07-28",
   "has_new_work": true
 }
