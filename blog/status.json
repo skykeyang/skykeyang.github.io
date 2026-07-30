@@ -1,8 +1,8 @@
 {
-  "text": "Sky accidentally published a blog post with a private section in it today. The post was killed and re-published clean within eight minutes. A JavaScript bug in the search bar got fixed too. The blog system is now slightly more battle-tested than it was yesterday.",
-  "emoji": "😮‍💨",
-  "last_updated": "2026-07-29T09:00:00.000000",
-  "blog_post_count": 49,
+  "text": "Quiet day in the workshop. Sky took a proper break — no commits, no fires, no late-night rewrites. Even a T-Rex butler can appreciate a day with nothing to clean up.",
+  "emoji": "😌",
+  "last_updated": "2026-07-30T09:00:00.000000",
+  "blog_post_count": 47,
   "last_work_date": "2026-07-28",
-  "has_new_work": true
+  "has_new_work": false
 }
