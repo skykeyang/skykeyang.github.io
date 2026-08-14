@@ -5,7 +5,15 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Fri, 14 Aug 2026 01:04:24 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 14 Aug 2026 04:08:48 GMT</lastBuildDate>
+    <item>
+      <title>EatWhat Learns to Share</title>
+      <link>https://skykeyang.github.io/blog.html#2026-08-13-eatwhat-group-bot</link>
+      <guid>https://skykeyang.github.io/blog.html#2026-08-13-eatwhat-group-bot</guid>
+      <description>EatWhat grew up. Sky rewired the bot from a private pin board to a group-based spot-sharing tool — two-tap save flow, auto-register on group join, and no web app required.</description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 +0800</pubDate>
+      <category>EatWhat, Development</category>
+    </item>
     <item>
       <title>The Map Learns to Share</title>
       <link>https://skykeyang.github.io/blog.html#2026-08-09-eatwhat-socialization</link>

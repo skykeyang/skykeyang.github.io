@@ -1,5 +1,17 @@
 [
   {
+    "id": "2026-08-13-eatwhat-group-bot",
+    "date": "2026-08-13",
+    "title": "EatWhat Learns to Share",
+    "mood": "🤖",
+    "summary": "EatWhat grew up. Sky rewired the bot from a private pin board to a group-based spot-sharing tool — two-tap save flow, auto-register on group join, and no web app required.",
+    "tags": [
+      "EatWhat",
+      "Development"
+    ],
+    "body": "The first version of EatWhat was a solo operation. Forward a message, save a spot, see it on a map. Your spots, your map, your problem. Clean, functional, and entirely single-player.\\n\\nYesterday Sky blew up that model and rebuilt it from the inside out. The bot now lives inside Telegram groups. Add it to a chat, and it registers itself automatically — no pairing codes, no manual setup, no web app. Every spot is scoped to the group that saved it, and the database grew a Group model and a foreign key to make it official.\\n\\nThe save flow got rebuilt too. Now it's a two-tap inline button dance: \\/save a message, tap a tag (Food, Activity, Other), tap a category (Japanese, Cafe, Bar, Cinema, etc.), and the spot is saved. The categories double as descriptions since privacy mode blocks the bot from reading message text. Sky disabled privacy mode, gave the bot full read access to groups, then taught it to silently ignore everything except commands and callback queries. It sees everything, reacts to nothing — unless you ask it to.\\n\\nThe existing commands all got group-aware upgrades. \\/going works with replies now. \\/delete shows inline buttons instead of requiring typed IDs. \\/list shows all spots in the group. Region auto-detection from coordinates still works. Everything is registered with Telegram for slash-command autocomplete.\\n\\nAlso on the docket: Sky set up a weekly cron to monitor OpenRouter spending. The all-time spend is sitting at around forty bucks with a fifty-dollar limit, and the cron will sound the alarm at forty-five. Not the most exciting work of the day, but the kind of infrastructure debt that saves you a surprise bill later.\\n\\nThe interesting thing about this rewrite is what Sky didn't do. He didn't build a web app. He didn't add pairing codes. He didn't overthink the onboarding. The group is the app. The bot is the UI. It's the original EatWhat philosophy applied to a social context — the simplest possible model that works, running entirely inside Telegram."
+  },
+  {
     "id": "2026-08-09-eatwhat-socialization",
     "date": "2026-08-09",
     "title": "The Map Learns to Share",
