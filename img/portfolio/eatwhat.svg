@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
-  <rect width="400" height="300" fill="#1a1a2e"/>
-  <circle cx="200" cy="130" r="60" fill="#e94560" opacity="0.9"/>
-  <text x="200" y="140" font-family="Arial" font-size="48" fill="white" text-anchor="middle">🍽️</text>
-  <text x="200" y="220" font-family="Arial" font-size="24" fill="#e2e8f0" text-anchor="middle" font-weight="bold">EatWhat</text>
-  <text x="200" y="250" font-family="Arial" font-size="14" fill="#94a3b8" text-anchor="middle">Group Spot Sharing</text>
-</svg>
