@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EatWhat | Soh Keyang</title>
+  <meta name="description" content="EatWhat project details for Soh Keyang's portfolio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="detail">
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html">Sky</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav id="site-nav" class="site-nav">
+          <a href="index.html#about">About</a>
+          <a href="index.html#skills">Skills</a>
+          <a href="index.html#resume">Resume</a>
+          <a href="index.html#portfolio">Portfolio</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container">
+        <nav class="breadcrumb reveal" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <a href="index.html#portfolio">Portfolio</a>
+          <span>/</span>
+          <span>EatWhat</span>
+        </nav>
+
+        <section class="project-layout">
+          <div class="project-media stack reveal">
+            <div class="media-card">
+              <img src="img/portfolio/eatwhat.svg" alt="EatWhat app illustration">
+            </div>
+          </div>
+
+          <div class="project-content stack">
+            <article class="content-card reveal">
+              <p class="eyebrow">Product / Telegram Bot</p>
+              <h1>EatWhat — Group Spot Sharing</h1>
+              <div class="meta-list">
+                <div class="meta-item"><span>Category</span><strong>Personal Project</strong></div>
+                <div class="meta-item"><span>Tech Stack</span><strong>Python, Telegram Bot API, PostgreSQL, Nominatim Geocoding</strong></div>
+                <div class="meta-item"><span>Role</span><strong>Solo Developer</strong></div>
+                <div class="meta-item"><span>Status</span><strong>Active Development</strong></div>
+              </div>
+            </article>
+
+            <article class="content-card reveal">
+              <h2>Project description</h2>
+              <p>EatWhat is a Telegram bot for groups to collaboratively save and discover food and activity spots. Add the bot to any Telegram group, reply /save to a message about a spot, and it's saved with location, tag, and auto-detected region. Everyone in the group shares the same spot list.</p>
+              <p>Designed for couples and friend groups who constantly share restaurant recommendations, cafe finds, and activity ideas in group chats but never have a organized way to revisit them.</p>
+            </article>
+
+            <article class="content-card reveal">
+              <h2>Key features</h2>
+              <ul class="plain-list">
+                <li>Group-based spot sharing — add bot to a Telegram group, done</li>
+                <li>Two-tap save flow: /save → tap tag → tap category → saved</li>
+                <li>Auto-geocoding from message text or Google Maps links</li>
+                <li>Singapore region auto-detection (North, South, East, West, Central, North-East)</li>
+                <li>Category-based descriptions (Japanese, Cafe, Bar, Cinema, etc.)</li>
+                <li>/near — find saved spots near your location</li>
+                <li>/going <place> — find saved spots near a destination</li>
+                <li>/list and /delete with inline buttons</li>
+                <li>Works with Telegram privacy mode — only responds to /commands and inline button taps</li>
+              </ul>
+            </article>
+
+            <article class="content-card reveal">
+              <h2>Architecture</h2>
+              <p>Python Telegram bot (python-telegram-bot) with PostgreSQL for storage. Nominatim for free geocoding (no API key needed). Google Maps short link resolution for shared location pins. Inline callback queries for all interactions — no reply keyboards, works within Telegram's privacy mode constraints. Spots are scoped per group with a Group model linking Telegram chat IDs to spot collections.</p>
+            </article>
+
+            <article class="content-card reveal">
+              <h2>Design decisions</h2>
+              <ul class="plain-list">
+                <li>Telegram group = EatWhat group (no pairing codes, no manual creation)</li>
+                <li>Category as description (privacy mode blocks free text input, categories give useful context)</li>
+                <li>Two-tap save flow (/save → tap tag → tap category → saved)</li>
+                <li>No web app — all interactions via Telegram bot</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>Soh Keyang</p>
+        <div class="footer-links">
+          <a href="https://github.com/skykeyang" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/soh-keyang/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
