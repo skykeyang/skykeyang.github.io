@@ -1,16 +1,16 @@
 #!/bin/bash
 # Bake dynamic stats into index.html
 # Replaces placeholders with real numbers from:
-#   - blog/posts.json (blog post count)
+#   - blog/posts.json (blog post count + random teaser post)
 #   - task_logger.py (tasks, artifacts, decisions)
 #   - git repos (total commits, lines of code)
 #
 # Placeholders replaced:
 #   BLOG_COUNT, TASK_COUNT, ARTIFACT_COUNT, DECISION_COUNT
 #   GIT_COMMITS, LOC_COUNT
+#   TEASER_MOOD, TEASER_DATE, TEASER_TITLE, TEASER_SUMMARY
 #
 # Usage: bash scripts/bake-stats.sh
-# Should run before every deploy and in the daily blog cron.
 
 set -euo pipefail
 
@@ -24,72 +24,106 @@ if [ ! -f "$INDEX_FILE" ]; then
   exit 1
 fi
 
-# === Blog post count ===
-BLOG_COUNT=$(python3 -c "import json; print(len(json.load(open('$POSTS_FILE'))))" 2>/dev/null || echo 0)
-echo "Blog posts: $BLOG_COUNT"
+# Collect all stats and write to a temp JSON file, then do replacement in one Python call
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+POSTS_FILE="$SCRIPT_DIR/blog/posts.json"
+INDEX_FILE="$SCRIPT_DIR/index.html"
 
-# === Task logger stats ===
-if [ -f "$TASK_LOGGER" ]; then
-  TASK_STATS=$(python3 "$TASK_LOGGER" summary 2>/dev/null || echo '{}')
-  TASK_COUNT=$(echo "$TASK_STATS" | python3 -c "import json,sys; print(json.load(sys.stdin).get('tasks_total',0))" 2>/dev/null || echo 0)
-  ARTIFACT_COUNT=$(echo "$TASK_STATS" | python3 -c "import json,sys; print(json.load(sys.stdin).get('artifacts',0))" 2>/dev/null || echo 0)
-  DECISION_COUNT=$(echo "$TASK_STATS" | python3 -c "import json,sys; print(json.load(sys.stdin).get('decisions',0))" 2>/dev/null || echo 0)
-else
-  TASK_COUNT=0
-  ARTIFACT_COUNT=0
-  DECISION_COUNT=0
-fi
-echo "Tasks: $TASK_COUNT | Artifacts: $ARTIFACT_COUNT | Decisions: $DECISION_COUNT"
+export POSTS_FILE INDEX_FILE
 
-# === Git commits across all repos ===
-REPOS=("skykeyang.github.io" "sg-bingo" "arlo-mba" "urbanlimo" "eatwhat" "monkeyprompt" "millenia-energy")
-GIT_COMMITS=0
-for repo in "${REPOS[@]}"; do
-  dir="$HOME/Documents/GitHub/$repo"
-  if [ -d "$dir/.git" ]; then
-    count=$(cd "$dir" && git rev-list --count HEAD 2>/dev/null || echo 0)
-    GIT_COMMITS=$((GIT_COMMITS + count))
-  fi
-done
-echo "Git commits: $GIT_COMMITS"
+python3 << 'PYEOF'
+import json, os, subprocess, random
 
-# === Lines of code (excluding venv, node_modules, package-lock) ===
-LOC_COUNT=0
-for repo in "${REPOS[@]}"; do
-  dir="$HOME/Documents/GitHub/$repo"
-  if [ -d "$dir/.git" ]; then
-    loc=$(cd "$dir" && git ls-files | grep -E '\.(py|ts|tsx|js|jsx|html|css|sql)$' | grep -v package-lock | grep -v node_modules | grep -v venv | grep -v '.venv' | xargs wc -l 2>/dev/null | tail -1 | awk '{print $1}')
-    LOC_COUNT=$((LOC_COUNT + ${loc:-0}))
-  fi
-done
-echo "Lines of code: $LOC_COUNT"
+posts_file = os.environ["POSTS_FILE"]
+index_file = os.environ["INDEX_FILE"]
+task_logger = os.path.expanduser("~/.openclaw/skills/task-logger/scripts/task_logger.py")
 
-# === Replace all placeholders in index.html ===
-python3 -c "
-content = open('$INDEX_FILE').read()
+# Blog posts
+with open(posts_file) as f:
+    posts = json.load(f)
+blog_count = len(posts)
 
+# Random teaser
+teaser = random.choice(posts) if posts else {}
+
+# Task logger
+task_count = artifact_count = decision_count = 0
+if os.path.exists(task_logger):
+    try:
+        result = subprocess.run(["python3", task_logger, "summary"], capture_output=True, text=True, timeout=10)
+        stats = json.loads(result.stdout)
+        task_count = stats.get("tasks_total", 0)
+        artifact_count = stats.get("artifacts", 0)
+        decision_count = stats.get("decisions", 0)
+    except:
+        pass
+
+# Git commits + LOC
+repos = ["skykeyang.github.io", "sg-bingo", "arlo-mba", "urbanlimo", "eatwhat", "monkeyprompt", "millenia-energy"]
+github_dir = os.path.expanduser("~/Documents/GitHub")
+git_commits = 0
+loc_count = 0
+
+for repo in repos:
+    repo_dir = os.path.join(github_dir, repo)
+    if os.path.isdir(os.path.join(repo_dir, ".git")):
+        try:
+            count = subprocess.run(["git", "rev-list", "--count", "HEAD"], cwd=repo_dir, capture_output=True, text=True).stdout.strip()
+            git_commits += int(count) if count else 0
+        except:
+            pass
+        try:
+            files = subprocess.run(["git", "ls-files"], cwd=repo_dir, capture_output=True, text=True).stdout.strip().split("\n")
+            code_files = [f for f in files if f.endswith((".py", ".ts", ".tsx", ".js", ".jsx", ".html", ".css", ".sql"))
+                         and "package-lock" not in f and "node_modules" not in f
+                         and "venv" not in f and ".venv" not in f and f]
+            if code_files:
+                full_paths = [os.path.join(repo_dir, f) for f in code_files]
+                # Use xargs to handle large file lists
+                wc = subprocess.run(f"wc -l {' '.join(repr(p) for p in full_paths)}", shell=True, capture_output=True, text=True).stdout
+                last_line = wc.strip().split("\n")[-1]
+                parts = last_line.split()
+                loc = parts[-2] if len(parts) >= 2 and parts[-2].isdigit() else (parts[-1] if parts and parts[-1].isdigit() else "0")
+                loc_count += int(loc) if loc.isdigit() else 0
+        except:
+            pass
+
+print(f"Blog posts: {blog_count}")
+print(f"Tasks: {task_count} | Artifacts: {artifact_count} | Decisions: {decision_count}")
+print(f"Git commits: {git_commits}")
+print(f"Lines of code: {loc_count}")
+print(f"Teaser: {teaser.get('title', '?')} ({teaser.get('date', '?')})")
+
+# Replace placeholders
 replacements = {
-    'BLOG_COUNT': '$BLOG_COUNT',
-    'TASK_COUNT': '$TASK_COUNT',
-    'ARTIFACT_COUNT': '$ARTIFACT_COUNT',
-    'DECISION_COUNT': '$DECISION_COUNT',
-    'GIT_COMMITS': '$GIT_COMMITS',
-    'LOC_COUNT': '$LOC_COUNT',
+    "BLOG_COUNT": str(blog_count),
+    "TASK_COUNT": str(task_count),
+    "ARTIFACT_COUNT": str(artifact_count),
+    "DECISION_COUNT": str(decision_count),
+    "GIT_COMMITS": str(git_commits),
+    "LOC_COUNT": str(loc_count),
+    "TEASER_MOOD": teaser.get("mood", "📝"),
+    "TEASER_DATE": teaser.get("date", ""),
+    "TEASER_TITLE": teaser.get("title", ""),
+    "TEASER_SUMMARY": teaser.get("summary", ""),
 }
 
-total_replaced = 0
+with open(index_file) as f:
+    content = f.read()
+
+total = 0
 for placeholder, value in replacements.items():
     count = content.count(placeholder)
     if count > 0:
-        content = content.replace(placeholder, value)
-        total_replaced += count
-        print(f'  {placeholder}: {count} occurrence(s) → {value}')
+        content = content.replace(placeholder, str(value))
+        total += count
+        print(f"  {placeholder}: {count} occurrence(s)")
 
-if total_replaced == 0:
-    print('WARNING: No placeholders found — already baked?')
+if total == 0:
+    print("WARNING: No placeholders found — already baked?")
 else:
-    open('$INDEX_FILE', 'w').write(content)
-    print(f'Replaced {total_replaced} placeholder(s) total')
-"
-
-echo "✅ Baked stats into index.html"
+    with open(index_file, "w") as f:
+        f.write(content)
+    print(f"Replaced {total} placeholder(s) total")
+    print("✅ Baked stats into index.html")
+PYEOF
