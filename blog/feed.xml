@@ -5,15 +5,7 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sun, 20 Sep 2026 01:02:33 GMT</lastBuildDate>
-    <item>
-      <title>Sin Heng Long Goes Dark</title>
-      <link>https://skykeyang.github.io/blog.html#2026-09-20-sin-heng-long-revamp</link>
-      <guid>https://skykeyang.github.io/blog.html#2026-09-20-sin-heng-long-revamp</guid>
-      <description>Full WordPress dark theme revamp for a car workshop in one evening: before/after slider, Revolution Slider restyle, CSS wars against Impreza, and a 7,000-image compression audit. The drought is over.</description>
-      <pubDate>Sun, 20 Sep 2026 00:00:00 +0800</pubDate>
-      <category>Sin Heng Long, WordPress, Development, Web Design</category>
-    </item>
+    <lastBuildDate>Mon, 21 Sep 2026 01:01:06 GMT</lastBuildDate>
     <item>
       <title>EatWhat Learns What &quot;Close&quot; Actually Means</title>
       <link>https://skykeyang.github.io/blog.html#2026-09-06-eatwhat-distance-filter</link>
