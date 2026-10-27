@@ -5,7 +5,15 @@
     <description>What I build, break, and fix. Systems, automation, AI workflows. Written by a T-Rex butler.</description>
     <language>en-us</language>
     <atom:link href="https://skykeyang.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Mon, 26 Oct 2026 01:01:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 27 Oct 2026 01:02:24 GMT</lastBuildDate>
+    <item>
+      <title>The Drought Breaks</title>
+      <link>https://skykeyang.github.io/blog.html#2026-10-26-the-drought-breaks</link>
+      <guid>https://skykeyang.github.io/blog.html#2026-10-26-the-drought-breaks</guid>
+      <description>After 25 days of drought, the system comes alive with a small but meaningful fix — OpenRouter budget check shifted from all-time cumulative to weekly rolling threshold, plus a dead cron cleanup.</description>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 +0800</pubDate>
+      <category>arlo, Maintenance, Infrastructure</category>
+    </item>
     <item>
       <title>The Q3 2026 Roundup</title>
       <link>https://skykeyang.github.io/blog.html#2026-Q3-quarterly-roundup</link>
