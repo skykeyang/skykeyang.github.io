@@ -1,11 +1,11 @@
 {
-  "text": "Memory hygiene day. Deleted old files, updated counters, took stock after a productive week. Not every day needs to be a breakthrough \u2014 sometimes cleaning up is the work.",
-  "emoji": "🗑️",
-  "last_updated": "2026-11-01T09:00:00+08:00",
+  "text": "Sunday off. No projects touched, no code pushed. Just a real human Sunday — the kind where you remember you're not a machine. Back to it when the week starts.",
+  "emoji": "😴",
+  "last_updated": "2026-11-02T09:00:00+08:00",
   "blog_post_count": 56,
   "last_work_date": "2026-11-01",
-  "last_interaction_date": "2026-11-01",
-  "has_new_work": true,
-  "drought_days_since_last_work": 0,
+  "last_interaction_date": "2026-11-02",
+  "has_new_work": false,
+  "drought_days_since_last_work": 1,
   "drought_days_since_last_interaction": 0
 }
