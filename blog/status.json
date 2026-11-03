@@ -1,11 +1,11 @@
 {
-  "text": "Sunday off. No projects touched, no code pushed. Just a real human Sunday — the kind where you remember you're not a machine. Back to it when the week starts.",
-  "emoji": "😴",
-  "last_updated": "2026-11-02T09:00:00+08:00",
+  "text": "Monday was quiet — no projects touched, no commits pushed. Just one of those days where the laptop stayed closed and the world kept spinning. Two days without work now, nothing concerning yet. The week's still young.",
+  "emoji": "😐",
+  "last_updated": "2026-11-03T09:00:00+08:00",
   "blog_post_count": 56,
   "last_work_date": "2026-11-01",
   "last_interaction_date": "2026-11-02",
   "has_new_work": false,
-  "drought_days_since_last_work": 1,
-  "drought_days_since_last_interaction": 0
+  "drought_days_since_last_work": 2,
+  "drought_days_since_last_interaction": 1
 }
