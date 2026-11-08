@@ -1852,3 +1852,124 @@ h4 {
   color: var(--muted);
   font-size: 0.95rem;
 }
+
+/* ---- Featured Case Study ---- */
+.featured-case-study {
+  margin-top: 2rem;
+}
+
+.case-study-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.case-study-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+  transition: border-color 0.2s;
+}
+
+.case-study-block:hover {
+  border-color: var(--border-strong);
+}
+
+.case-study-block.case-study-impact {
+  grid-column: 1 / -1;
+  background: var(--accent-soft);
+  border-color: var(--accent-glow);
+}
+
+.case-study-block.case-study-stack {
+  grid-column: 1 / -1;
+}
+
+.case-study-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.75rem;
+}
+
+.case-study-block p {
+  margin: 0 0 0.5rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.case-study-block .plain-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.case-study-block .plain-list li {
+  margin-bottom: 0.6rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.case-study-block .plain-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.6;
+}
+
+.case-study-block .plain-list li strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.case-study-impact .plain-list li::before {
+  background: var(--accent);
+  opacity: 1;
+}
+
+/* ---- Tech Tags ---- */
+.tech-stack-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tech-tag {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+
+.tech-tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .case-study-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .case-study-block {
+    padding: 1.25rem;
+  }
+}
